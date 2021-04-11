@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    include: local-oauth
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+logging:
+  level:
+    com.dahada.backend: debug
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss:SSS} [%X{tracking} ++ %X{ipaddr}] [%thread] %-5level %logger{36} - %msg%n"
+    console: "%(%d{yyyy-MM-dd HH:mm:ss:SSS} [%X{tracking} ++ %X{ipaddr}] [%thread] %-5level %logger{36} - %msg%n)"
+  file:
+    name: ./logs/dahada-dev.log
