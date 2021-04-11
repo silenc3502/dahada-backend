@@ -1,5 +1,6 @@
 package com.dahada.backend.domain.user.service;
 
+import com.dahada.backend.domain.common.vo.Email;
 import com.dahada.backend.domain.user.UserRepository;
 import com.dahada.backend.domain.user.enitity.User;
 import com.dahada.backend.domain.user.service.dto.CheckUserExistenceRequest;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -38,7 +40,7 @@ class DefaultUserQueryServiceTest {
         final CheckUserExistenceRequest request = new CheckUserExistenceRequest("abc@adfadsf.com");
 
         // stub
-        when(repository.findUserByEmail(anyString())).thenReturn(Optional.empty());
+        when(repository.findUserByEmail(any(Email.class))).thenReturn(Optional.empty());
 
         // when
         final boolean actual = sut.exist(request);
@@ -55,7 +57,7 @@ class DefaultUserQueryServiceTest {
 
         // stub
         final User mockUser = mock(User.class);
-        when(repository.findUserByEmail(anyString())).thenReturn(Optional.of(mockUser));
+        when(repository.findUserByEmail(any(Email.class))).thenReturn(Optional.of(mockUser));
 
         // when
         final boolean actual = sut.exist(request);

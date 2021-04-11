@@ -1,4 +1,4 @@
-package com.dahada.backend.application.configuration.aspect;
+package com.dahada.backend.application.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

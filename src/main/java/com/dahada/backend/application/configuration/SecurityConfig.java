@@ -1,5 +1,7 @@
 package com.dahada.backend.application.configuration;
 
+import com.dahada.backend.application.authentication.CustomOAuth2UserService;
+import com.dahada.backend.application.authentication.TestHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout().logoutSuccessUrl("/")
                 .and()
                     .oauth2Login()
+                        .successHandler(new TestHandler())
                         .userInfoEndpoint().userService(service);
     }
 }

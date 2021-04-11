@@ -1,4 +1,4 @@
-package com.dahada.backend.application.configuration;
+package com.dahada.backend.application.authentication;
 
 import com.dahada.backend.domain.user.enitity.UserRole;
 import com.dahada.backend.domain.user.service.UserQueryService;
@@ -15,14 +15,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+/**
+ * OAuth2 인증된 사용자 데이터 처리하는 서비스
+ *
+ * @author hyeyoom
+ */
 @Slf4j
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     private final UserQueryService queryService;
+    private final SessionRepository sessionRepository;
 
-    public CustomOAuth2UserService(UserQueryService queryService) {
+    public CustomOAuth2UserService(UserQueryService queryService, SessionRepository sessionRepository) {
         this.queryService = queryService;
+        this.sessionRepository = sessionRepository;
     }
 
     @Override
@@ -42,7 +49,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         if (queryService.exist(checkExistenceRequest)) {
 
         }
-
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(UserRole.DAHADA_USER.name())),
                 attributes.getAttributes(),

@@ -20,8 +20,8 @@ class DefaultOAuth2SignUpServiceTest {
 
     }
 
-    @DisplayName("")
+    @DisplayName("사용자가 이미 존재하는 경우 UserAlreadyExistException 예외 발생")
     @Test
-    void test() {
+    void testUserAlreadyExist() {
     }
 }

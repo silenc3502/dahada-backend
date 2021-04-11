@@ -1,4 +1,4 @@
-package com.dahada.backend.application.configuration.aspect;
+package com.dahada.backend.application.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

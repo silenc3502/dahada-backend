@@ -31,7 +31,7 @@ public class User extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String name;
-
+    
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.DAHADA_USER;

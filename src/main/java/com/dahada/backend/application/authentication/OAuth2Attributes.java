@@ -1,4 +1,4 @@
-package com.dahada.backend.application.configuration;
+package com.dahada.backend.application.authentication;
 
 import com.dahada.backend.domain.authentication.Provider;
 import lombok.Builder;

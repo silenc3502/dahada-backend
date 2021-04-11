@@ -12,6 +12,4 @@ public class OAuth2SignUpUserRequest {
     private final String email;
     private final Provider provider;
     private final String oauth2Key;
-
-
 }

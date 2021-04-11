@@ -1,5 +1,6 @@
 package com.dahada.backend.domain.user.service;
 
+import com.dahada.backend.domain.common.vo.Email;
 import com.dahada.backend.domain.user.UserRepository;
 import com.dahada.backend.domain.user.enitity.User;
 import com.dahada.backend.domain.user.service.dto.CheckUserExistenceRequest;
@@ -20,7 +21,7 @@ public class DefaultUserQueryService implements UserQueryService {
 
     @Override
     public boolean exist(CheckUserExistenceRequest request) {
-        final Optional<User> maybeUser = repository.findUserByEmail(request.getEmail());
+        final Optional<User> maybeUser = repository.findUserByEmail(Email.of(request.getEmail()));
         return maybeUser.isPresent();
     }
 }
