@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=no">
+<title>다하다</title>
+<link rel="stylesheet" href="/css/common.css">
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    window.onload = function scrollToBottom(){
+        var objDiv = document.getElementById("scroll");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    
+    function scrollToBottom(){
+        var objDiv = document.getElementById("scroll");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+</script>
+</head>
+<body>
+    
+<header class="header">
+    <div class="hd">
+        <a href="#"><img src="/img/img_logo1.png" alt="다하다" class="hd-logo"></a>
+        
+        <ul class="hd-nav">
+            <li><a href="#">마이페이지</a></li>
+            <li><a href="#">로그인</a></li>
+            <li><a href="service.html">서비스</a></li>
+            <li class="active"><a href="#">다하다와 함께하기</a></li>
+        </ul>
+    </div>
+    
+    <input type="button" value=" " class="btn-hamburger">
+</header>
+
+<ul class="quick-menu">
+    <li><a href="#"><img src="/img/ico_sns1.png" alt="네이버"></a></li>
+    <li><a href="#"><img src="/img/ico_sns2.png" alt="카카오톡"></a></li>
+    <li><a href="#"><img src="/img/ico_chat1.png" alt="채팅"></a></li>
+</ul>
+
+<!--모바일 메뉴-->
+<div class="m-header">
+    <div class="m-hd">
+        <img src="/img/img_logo1.png" alt="로고" class="m-logo">
+        <input type="button" value=" " class="btn-hamburger js-hamburger">
+    </div>
+</div>
+
+<div class="m-gnb">
+    <div class="top-area">
+        <img src="/img/img_logo1.png" alt="다하다" class="m-logo">
+        <input type="button" value=" " class="btn-close js-hamburger-close">
+    </div>
+
+    <ul class="list-gnb">
+        <li class="active"><a href="index.html">HOME</a></li>
+        <li><a href="#">마이페이지</a></li>
+        <li><a href="service.html">서비스</a></li>
+        <li><a href="#">다하다와 함께하기</a></li>
+    </ul>
+
+    <input type="button" value="로그아웃" class="btn-logout">
+</div>
+
+<div class="m-gnb-bg js-hamburger-close"></div>
+<!--//모바일 메뉴-->
+
+<section class="message">
+    <div class="wrap wrap-v1">
+        <div class="tit-area">
+            <div class="tit-sub">파트너스와 채팅</div>
+        </div>
+
+        <div class="box-message">
+            <div class="total-message">
+                <div class="message-util">
+                    <select class="select-message">
+                        <option>전체메세지</option>
+                    </select>
+
+                    <input type="button" value=" " class="btn-search">
+                </div>
+
+                <ul class="list-message js-message">
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+
+                        <div class="message-detail">
+                            <div class="partner-name">김기사</div>
+                            <div class="message-preview">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록 방문전에 미리 연락드리겠습니다.</div>
+
+                            <div class="message-time">21.04.10</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="message-area">
+                <div class="live-area">
+                    <div class="user-info">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_no_profile1.png');">
+
+                        <div class="user-detail">
+                            <div class="user-name">김미정</div>
+                            <div class="service-theme">가전청소 서비스</div>
+                        </div>
+                    </div>
+                    
+                    <div id="scroll" class="message-conts">
+                        <div class="message-log">
+                            <div class="message-date">2021년 4월 10일 토요일</div>
+                            
+                            <div class="log log-r">
+                                <div class="connect-info">
+                                    <div class="connect-detail">
+                                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_profile1.png');">
+                                        <div class="connect-message">김미정 고객님 안녕하세요!<br>파트너스와의 상담이 연결되었습니다.</div>
+                                    </div>
+
+                                    <input type="button" value="파트너스 프로필보기" class="btn-view" onclick="location.href='engineer.html'">
+                                </div>
+                            </div>
+                            
+                            <!--오른쪽 말풍선-->
+                            <div class="log log-v1">
+                                <div class="bubble bubble-v1">
+                                    <div class="log-conts">안녕하세요^^<br>서비스 신청했는데 잘 부탁드립니다.</div>
+                                    <div class="log-datetime">21.04.10<br>10:40</div>
+                                </div>
+                            </div>
+                            
+                            <!--왼쪽 말풍선-->
+                            <div class="log log-v2">
+                                <div class="bubble bubble-v2">
+                                    <div class="log-conts">안녕하세요 고객님^^<br>요청하신 서비스와 일정에 맞도록<br>방문전에 미리 연락드리겠습니다.<br>감사합니다.</div>
+                                    <div class="log-datetime">21.04.10<br>10:40</div>
+                                </div>
+                            </div>
+                            
+                            <!--오른쪽 말풍선-->
+                            <div class="log log-v1">
+                                <div class="bubble bubble-v1">
+                                    <div class="log-conts">감사합니다~~!</div>
+                                    <div class="log-datetime">21.04.10<br>10:40</div>
+                                </div>
+                            </div>
+                            
+                            <div class="message-date">2021년 4월 11일 토요일</div>
+                            
+                            <!--왼쪽 말풍선-->
+                            <div class="log log-v2">
+                                <div class="bubble bubble-v2">
+                                    <div class="log-conts">고객님, 연락드리겠습니다.</div>
+                                    <div class="log-datetime">21.04.11<br>10:40</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bar-chat">
+                    <textarea placeholder="메세지를 입력하세요!" onkeydown="resize(this)" onkeyup="resize(this)" class="inp-chat"></textarea>
+                    <input type="button" value="전송" class="btn-chat">
+                </div>
+                
+                <div class="file-upload">
+                    <input id="file1" type="file" name="file_ck" class="file-custom">
+                    <label for="file1"><img src="/img/ico_clip1.png" alt="파일첨부">파일첨부</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="ft">
+        <div class="ft-nav">
+            <img src="/img/img_logo2.png" alt="다하다" class="ft-logo">
+
+            <ul class="ft-util">
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">오시는길</a></li>
+                <li><a href="#">서비스안내</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
+        </div>
+
+        <div class="ft-info"> 
+            <div class="company-info">대표자 김용욱<span>ㅣ</span>주소 : 경기도 김포시 하성면 월하로778번길 36, 2층<br>사업자 등록 번호 : 326-88-01078<span>ㅣ</span>대표전화 1899-8053<span>ㅣ</span>fax 02-6716-1982</div>
+            <div class="copyright">COPYRIGHT DAHADA ALLRIGHT RESERVED.</div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=no">
+<title>다하다</title>
+<link rel="stylesheet" href="/css/common.css">
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/script.js"></script>
+<script>
+	function change(num){
+		var x  = document.itemnum;
+		var y = Number(x.count.value) + num;
+		if(y < 0) y = 0;
+		x.count.value = y;
+	}
+
+	function change2(num){
+		var x  = document.itemnum;
+		var y = Number(x.count2.value) + num;
+		if(y < 0) y = 0;
+		x.count2.value = y;
+	}
+    
+    function change3(num){
+		var x  = document.itemnum;
+		var y = Number(x.count3.value) + num;
+		if(y < 0) y = 0;
+		x.count3.value = y;
+	}
+</script>
+</head>
+<body>
+    
+<header class="header">
+    <div class="hd">
+        <a href="#"><img src="/img/img_logo1.png" alt="다하다" class="hd-logo"></a>
+        
+        <ul class="hd-nav">
+            <li><a href="#">마이페이지</a></li>
+            <li><a href="#">로그인</a></li>
+            <li><a href="service.html">서비스</a></li>
+            <li class="active"><a href="#">다하다와 함께하기</a></li>
+        </ul>
+    </div>
+    
+    <input type="button" value=" " class="btn-hamburger">
+</header>
+
+<ul class="quick-menu">
+    <li><a href="#"><img src="/img/ico_sns1.png" alt="네이버"></a></li>
+    <li><a href="#"><img src="/img/ico_sns2.png" alt="카카오톡"></a></li>
+    <li><a href="#"><img src="/img/ico_chat1.png" alt="채팅"></a></li>
+</ul>
+
+<!--모바일 메뉴-->
+<div class="m-header">
+    <div class="m-hd">
+        <img src="/img/img_logo1.png" alt="로고" class="m-logo">
+        <input type="button" value=" " class="btn-hamburger js-hamburger">
+    </div>
+</div>
+
+<div class="m-gnb">
+    <div class="top-area">
+        <img src="/img/img_logo1.png" alt="다하다" class="m-logo">
+        <input type="button" value=" " class="btn-close js-hamburger-close">
+    </div>
+
+    <ul class="list-gnb">
+        <li class="active"><a href="index.html">HOME</a></li>
+        <li><a href="#">마이페이지</a></li>
+        <li><a href="service.html">서비스</a></li>
+        <li><a href="#">다하다와 함께하기</a></li>
+    </ul>
+
+    <input type="button" value="로그아웃" class="btn-logout">
+</div>
+
+<div class="m-gnb-bg js-hamburger-close"></div>
+<!--//모바일 메뉴-->
+
+<section class="reserve step-v2">
+    <div class="service-info2">
+        <div class="pos">
+            <div class="service-theme">가전케어 서비스</div>
+
+            <div class="service-status2">
+                <div>
+                    <div class="status-num">53,562</div>
+                    <div class="tit-status">누적 이용자</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">213</div>
+                    <div class="tit-status">등록파트너스</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">12,552</div>
+                    <div class="tit-status">리뷰 수</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">6.5h</div>
+                    <div class="tit-status">평균 서비스 시간</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reserve-area">
+        <div class="wrap wrap-v1">
+            <div class="tit-area tit-area-v1">
+                <div class="tit-sub">제품의 수량은 어떻게 되나요?</div>
+                <div class="tit-sub-conts">서비스 이용 제품의 수량을 선택하세요!</div>
+            </div>
+
+            <div class="progress-area">
+                <div class="progress-percent">30%</div>
+
+                <div class="bar-progress">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+            </div>
+            
+            <!--서비스 선택-->
+            <form name="itemnum">
+            
+            <div class="box-reserve">
+                <div class="inner">
+                    <ul class="list-count">
+                        <li>
+                            <span class="item-name">벽걸이형</span>
+
+                            <span class="item-count">
+                                <input type="button" value=" " onclick='javascript:change(-1);' class="btn-minus"><input type="text" name="count" value="0" class="num" readonly><input type="button" value=" " onclick='javascript:change(1);' class="btn-plus">
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="item-name">천장형(1way)</span>
+
+                            <span class="item-count">
+                                <input type="button" value=" " onclick='javascript:change2(-1);' class="btn-minus"><input type="text" name="count2" value="0" class="num" readonly><input type="button" value=" " onclick='javascript:change2(1);' class="btn-plus">
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="item-name">통돌이세탁기</span>
+
+                            <span class="item-count">
+                                <input type="button" value=" " onclick='javascript:change3(-1);' class="btn-minus"><input type="text" name="count3" value="0" class="num" readonly><input type="button" value=" " onclick='javascript:change3(1);' class="btn-plus">
+                            </span>
+                        </li>
+                    </ul>
+
+                    <hr class="line">
+
+                    <div class="total-service">
+                        <span class="tit-total">서비스 이용대수</span>
+                        <span class="total-count">총 <span>6</span>대</span>
+                    </div>
+                </div>
+            </div>
+            
+            </form>
+
+            <div class="btns">
+                <input type="button" value="이전 단계" class="btn btn-basic btn-basic-v1" onclick="location.href='reserve.html'">
+                <input type="submit" value="다음 단계" class="btn btn-basic" onclick="location.href='reserve3.html'">
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-review-board">
+        <div class="wrap wrap-v1">
+            <div class="tit-area2 tit-area2-v1">
+                <div class="board-name">가전케어 서비스 이용후기</div>
+                <a href="#" class="btn-more">+MORE</a>
+            </div>
+            
+            <div class="review-board2">
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">박**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">임**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">정**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">wo**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">liu**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-recommend">
+        <div class="wrap wrap-v1">
+            <div class="tit-area2 tit-area2-v1">
+                <div class="board-name">다하다 추천서비스</div>
+            </div>
+
+            <ul class="recommend-service">
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture5.png');">
+                        <div class="service-theme">홈케어 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture6.png');">
+                        <div class="service-theme">인테리어 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture7.png');">
+                        <div class="service-theme">가전수리 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture8.png');">
+                        <div class="service-theme">욕실수리 서비스</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="ft">
+        <div class="ft-nav">
+            <img src="/img/img_logo2.png" alt="다하다" class="ft-logo">
+
+            <ul class="ft-util">
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">오시는길</a></li>
+                <li><a href="#">서비스안내</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
+        </div>
+
+        <div class="ft-info">
+            <div class="company-info">대표자 김용욱<span>ㅣ</span>주소 : 경기도 김포시 하성면 월하로778번길 36, 2층<br>사업자 등록 번호 : 326-88-01078<span>ㅣ</span>대표전화 1899-8053<span>ㅣ</span>fax 02-6716-1982</div>
+            <div class="copyright">COPYRIGHT DAHADA ALLRIGHT RESERVED.</div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

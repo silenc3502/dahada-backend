@@ -1,8 +1,7 @@
 package com.dahada.backend.application.authentication;
 
+import com.dahada.backend.application.authentication.dto.OAuth2Attributes;
 import com.dahada.backend.domain.user.enitity.UserRole;
-import com.dahada.backend.domain.user.service.UserQueryService;
-import com.dahada.backend.domain.user.service.dto.CheckUserExistenceRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -24,12 +23,10 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final UserQueryService queryService;
-    private final SessionRepository sessionRepository;
+    private final SessionAuthRepository repository;
 
-    public CustomOAuth2UserService(UserQueryService queryService, SessionRepository sessionRepository) {
-        this.queryService = queryService;
-        this.sessionRepository = sessionRepository;
+    public CustomOAuth2UserService(SessionAuthRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -44,11 +41,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         log.debug("oAuth2User: {}", oAuth2User);
         log.debug("userNameAttribute: {}", userNameAttribute);
         log.debug("attributes: {}", attributes);
-
-        final CheckUserExistenceRequest checkExistenceRequest = new CheckUserExistenceRequest(attributes.getEmail());
-        if (queryService.exist(checkExistenceRequest)) {
-
-        }
+        repository.storeOAuth2Data(attributes);
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(UserRole.DAHADA_USER.name())),
                 attributes.getAttributes(),

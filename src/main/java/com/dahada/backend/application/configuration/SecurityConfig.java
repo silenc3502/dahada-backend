@@ -1,7 +1,7 @@
 package com.dahada.backend.application.configuration;
 
 import com.dahada.backend.application.authentication.CustomOAuth2UserService;
-import com.dahada.backend.application.authentication.TestHandler;
+import com.dahada.backend.application.authentication.OAuth2SuccessHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -10,11 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService service;
+    private final OAuth2SuccessHandler successHandler;
 
-    public SecurityConfig(CustomOAuth2UserService service) {
+    public SecurityConfig(CustomOAuth2UserService service, OAuth2SuccessHandler successHandler) {
         this.service = service;
+        this.successHandler = successHandler;
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -23,13 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/static/**", "/h2-console/**").permitAll()
+                    .antMatchers("/", "/css/**", "/js/**", "/img/**", "/h2-console/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .logout().logoutSuccessUrl("/")
                 .and()
                     .oauth2Login()
-                        .successHandler(new TestHandler())
+                        .successHandler(successHandler)
                         .userInfoEndpoint().userService(service);
     }
 }

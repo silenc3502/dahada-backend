@@ -1,4 +1,4 @@
-package com.dahada.backend.application.authentication;
+package com.dahada.backend.application.authentication.dto;
 
 import com.dahada.backend.domain.authentication.Provider;
 import lombok.Builder;
@@ -11,6 +11,7 @@ import java.util.Map;
 @ToString
 public final class OAuth2Attributes {
     private final Map<String, Object> attributes;
+    private final Provider provider;
     private final String uniqueId;
     private final String nameAttributeKey;
     private final String name;
@@ -18,8 +19,9 @@ public final class OAuth2Attributes {
     private final String picture;
 
     @Builder
-    private OAuth2Attributes(Map<String, Object> attributes, String uniqueId, String nameAttributeKey, String name, String email, String picture) {
+    public OAuth2Attributes(Map<String, Object> attributes, Provider provider, String uniqueId, String nameAttributeKey, String name, String email, String picture) {
         this.attributes = attributes;
+        this.provider = provider;
         this.uniqueId = uniqueId;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
@@ -32,22 +34,23 @@ public final class OAuth2Attributes {
             final Provider provider = Provider.valueOf(registrationId.toUpperCase());
             switch (provider) {
                 case GOOGLE:
-                    return ofGoogle(userNameAttributeKey, attributes);
+                    return ofGoogle(provider, userNameAttributeKey, attributes);
                 case NAVER:
-                    return ofNaver("id", attributes);
+                    return ofNaver(provider, "id", attributes);
                 case KAKAO:
-                    return ofKakao("id", attributes);
+                    return ofKakao(provider, "id", attributes);
                 default:
                     return null;
             }
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException("OAtuh2 arguments are wrong.");
+            throw new IllegalArgumentException("OAuth2 arguments are wrong.");
         }
     }
 
-    private static OAuth2Attributes ofGoogle(String userNameAttributeKey, Map<String, Object> attributes) {
+    private static OAuth2Attributes ofGoogle(Provider provider, String userNameAttributeKey, Map<String, Object> attributes) {
         return OAuth2Attributes.builder()
                 .attributes(attributes)
+                .provider(provider)
                 .uniqueId((String) attributes.get(userNameAttributeKey))
                 .nameAttributeKey(userNameAttributeKey)
                 .name((String) attributes.get("name"))
@@ -57,10 +60,11 @@ public final class OAuth2Attributes {
     }
 
     @SuppressWarnings("unchecked")
-    private static OAuth2Attributes ofNaver(String userNameAttributeKey, Map<String, Object> attributes) {
+    private static OAuth2Attributes ofNaver(Provider provider, String userNameAttributeKey, Map<String, Object> attributes) {
         final Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuth2Attributes.builder()
                 .attributes(response)
+                .provider(provider)
                 .uniqueId((String) response.get(userNameAttributeKey))
                 .nameAttributeKey(userNameAttributeKey)
                 .name((String) response.get("name"))
@@ -70,11 +74,12 @@ public final class OAuth2Attributes {
     }
 
     @SuppressWarnings("unchecked")
-    private static OAuth2Attributes ofKakao(String userNameAttributeKey, Map<String, Object> attributes) {
+    private static OAuth2Attributes ofKakao(Provider provider, String userNameAttributeKey, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("kakao_account");
         Map<String, Object> profile = (Map<String, Object>) response.get("profile");
         return OAuth2Attributes.builder()
                 .attributes(attributes)
+                .provider(provider)
                 .uniqueId(String.valueOf(attributes.get(userNameAttributeKey)))
                 .nameAttributeKey(userNameAttributeKey)
                 .name((String) profile.get("nickname"))

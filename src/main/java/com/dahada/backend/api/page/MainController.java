@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Slf4j
 @Controller
-@RequestMapping("/")
 @RequestTracking
+@RequestMapping("/")
 public class MainController {
 
     @GetMapping
     public String index() {
-        return "index";
+        return "main";
     }
 }
