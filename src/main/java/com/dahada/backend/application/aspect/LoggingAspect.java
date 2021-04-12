@@ -20,7 +20,7 @@ import java.util.UUID;
 public class LoggingAspect {
 
     @Around("@within(RequestTracking) || @annotation(RequestTracking)")
-    public Object insertLoggngInfo(ProceedingJoinPoint pjp) throws Throwable {
+    public Object insertLoggingInfo(ProceedingJoinPoint pjp) throws Throwable {
         try {
             final HttpServletRequest request
                     = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();

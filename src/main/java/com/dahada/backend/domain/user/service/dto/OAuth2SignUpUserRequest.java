@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 public class OAuth2SignUpUserRequest {
+    private final String name;
     private final String email;
     private final Provider provider;
     private final String oauth2Key;

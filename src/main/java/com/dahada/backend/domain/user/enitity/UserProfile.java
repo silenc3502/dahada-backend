@@ -5,6 +5,7 @@ import com.dahada.backend.domain.common.utils.StringUtils;
 import com.dahada.backend.domain.common.vo.Address;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -29,13 +30,6 @@ public class UserProfile extends BaseTimeEntity {
     private String phone = null;
 
     public UserProfile(User user, Address address, String phone) {
-        if (user == null) {
-            throw new IllegalArgumentException("user should not be null.");
-        }
-        StringUtils.hasText(phone, () -> {
-            throw new IllegalArgumentException("phone number should not be null or empty.");
-        });
-
         this.user = user;
         this.address = address;
         this.phone = phone;

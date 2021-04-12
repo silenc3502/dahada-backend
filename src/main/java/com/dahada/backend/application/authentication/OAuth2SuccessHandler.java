@@ -36,9 +36,14 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         final OAuth2Attributes attributes = authRepository.restoreOAuth2Data();
         final String emailToCheck = attributes.getEmail();
-        if (queryService.exist(new CheckUserExistenceRequest(emailToCheck))) {
 
+        if (queryService.exist(new CheckUserExistenceRequest(emailToCheck))) {
+            authRepository.storeOAuth2Data(null);
+            // login code here
             return;
         }
+
+        // sign-up
+        response.sendRedirect("/signup/oauth2");
     }
 }

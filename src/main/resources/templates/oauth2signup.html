@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>소셜가입같은거</title>
+</head>
+<body>
+<form action="/signup/oauth2" role="form" method="post" th:object="${signUpForm}">
+    <input th:field="*{name}" type="text"/><br/>
+    <input th:field="*{email}" type="text" readonly/><br/>
+    <input th:field="*{picture}" type="hidden" readonly/><br/>
+    <input type="submit" value="가입하기">
+</form>
+</body>
+</html>

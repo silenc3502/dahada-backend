@@ -31,12 +31,12 @@ public class User extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String name;
-    
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.DAHADA_USER;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private UserProfile profile;
 
     public User(String email, String name) {
@@ -46,5 +46,9 @@ public class User extends BaseTimeEntity {
 
         this.email = Email.of(email);
         this.name = name;
+    }
+
+    public void addProfile(UserProfile profile) {
+        this.profile = profile;
     }
 }
