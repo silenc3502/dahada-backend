@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     // security & auth(jwt)
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
@@ -37,6 +38,8 @@ dependencies {
     // utility
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.github.scribejava:scribejava-core:8.1.0'
+    implementation 'com.github.scribejava:scribejava-apis:8.1.0'
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

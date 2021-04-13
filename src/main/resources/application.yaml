@@ -7,6 +7,24 @@ spring:
   jpa:
     show-sql: true
     open-in-view: false
+  oauth2:
+    registration:
+      naver:
+        client-id: ${naverClientId}
+        client-secret: ${naverClientSecret}
+        scope: name,email,profile_image
+        redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        authorization-grant-type: authorization_code
+        client-name: naver
+      kakao:
+        client-id: ${kakaoClientId}
+        client-secret: ${kakaoClientSecret}
+        scope: profile,account_email
+        redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        authorization-grant-type: authorization_code
+        client-name: kakao
+        client-authentication-method: POST
+
 
 logging:
   level:
