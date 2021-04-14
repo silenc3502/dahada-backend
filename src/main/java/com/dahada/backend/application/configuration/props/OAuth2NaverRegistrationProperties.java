@@ -1,4 +1,4 @@
-package com.dahada.backend.application.configuration;
+package com.dahada.backend.application.configuration.props;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,4 +19,8 @@ public class OAuth2NaverRegistrationProperties {
     private List<String> scope;
     private String redirectUri;
     private String authorizationGrantType;
+
+    public String joinedScope() {
+        return String.join(",", scope);
+    }
 }

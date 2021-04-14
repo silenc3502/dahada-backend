@@ -1,6 +1,7 @@
 package com.dahada.backend;
 
-import com.dahada.backend.application.configuration.OAuth2NaverRegistrationProperties;
+import com.dahada.backend.application.configuration.props.OAuth2KakaoRegistrationProperties;
+import com.dahada.backend.application.configuration.props.OAuth2NaverRegistrationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,9 +23,13 @@ public class DahadaApplication {
     @Autowired
     private OAuth2NaverRegistrationProperties properties;
 
+    @Autowired
+    private OAuth2KakaoRegistrationProperties kakaoProps;
+
     @Bean
     public void test() {
         System.out.println(properties);
+        System.out.println(kakaoProps);
     }
 
 }

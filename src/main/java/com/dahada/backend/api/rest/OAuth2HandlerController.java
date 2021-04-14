@@ -1,7 +1,6 @@
 package com.dahada.backend.api.rest;
 
-import com.github.scribejava.apis.KakaoApi;
-import com.github.scribejava.core.builder.ServiceBuilder;
+import com.dahada.backend.application.auth.OAuth2ServiceFactory;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +18,7 @@ public class OAuth2HandlerController {
 
     @GetMapping("/authorization/{provider}")
     public void redirectAuthorization(@PathVariable String provider, HttpServletResponse response) throws IOException {
-        final OAuth20Service service = new ServiceBuilder("faeca93d248d073e2c468112eae6d7a6")
-                .callback("http://localhost:8080/oauth/callback/kakao")
-                .build(KakaoApi.instance());
-
+        final OAuth20Service service = OAuth2ServiceFactory.valueOf(provider.toUpperCase()).getService();
         final String authorizationUrl = service.getAuthorizationUrl();
         log.debug("authorizationUrl: {}", authorizationUrl);
         response.sendRedirect(authorizationUrl);
