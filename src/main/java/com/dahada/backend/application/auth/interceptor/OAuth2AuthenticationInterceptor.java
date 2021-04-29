@@ -22,7 +22,7 @@ public class OAuth2AuthenticationInterceptor extends AbstractAuthenticationInter
         log.debug("request uri: {}", request.getRequestURI());
         final OAUth2CallbackParam param = new OAUth2CallbackParam(request);
         log.debug("OAuth2AuthenticationInterceptor#convert: {}", param);
-        oauth2AuthService.test(param.toHolder());
+        oauth2AuthService.requestAuthentication(param.toHolder());
         return null;
     }
 }

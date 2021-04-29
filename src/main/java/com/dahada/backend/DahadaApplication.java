@@ -8,11 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @ConfigurationPropertiesScan
 @EnableJpaAuditing
-@EnableWebSecurity
 @SpringBootApplication
 public class DahadaApplication {
 

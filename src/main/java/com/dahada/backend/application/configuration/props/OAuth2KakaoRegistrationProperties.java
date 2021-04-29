@@ -19,6 +19,8 @@ public class OAuth2KakaoRegistrationProperties {
     private List<String> scope;
     private String redirectUri;
     private String authorizationGrantType;
+    private String clientAuthenticationMethod;
+    private String resourceUrl;
 
     public String joinedScope() {
         return String.join(",", scope);

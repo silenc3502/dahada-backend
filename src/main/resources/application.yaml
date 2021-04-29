@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    include: local-oauth
   h2:
     console:
       enabled: true
@@ -16,6 +14,8 @@ spring:
         redirect-uri: "http://localhost:8080/oauth/callback/naver"
         authorization-grant-type: authorization_code
         client-name: naver
+        client-authentication-method: GET
+        resource-url: "https://openapi.naver.com/v1/nid/me"
       kakao:
         client-id: ${kakaoClientId}
         client-secret: ${kakaoClientSecret}
@@ -24,6 +24,7 @@ spring:
         authorization-grant-type: authorization_code
         client-name: kakao
         client-authentication-method: POST
+        resource-url: "https://kapi.kakao.com/v2/user/me"
 
 
 logging:
