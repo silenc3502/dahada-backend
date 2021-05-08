@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Getter
 @ToString
 public class JwtPayload {
-    private String subject;
-    private String issuer;
-    private Date issuedAt;
-    private Date expiredAt;
-    private Map<String, Object> payload;
+    private final String subject;
+    private final String issuer;
+    private final Date issuedAt;
+    private final Date expiredAt;
+    private final Map<String, Object> payload;
 
     @Builder
     public JwtPayload(String subject, String issuer, Date issuedAt, Date expiredAt, Map<String, Object> payload) {
@@ -22,6 +24,6 @@ public class JwtPayload {
         this.issuer = issuer;
         this.issuedAt = issuedAt;
         this.expiredAt = expiredAt;
-        this.payload = payload;
+        this.payload = Optional.ofNullable(payload).orElse(new HashMap<>());
     }
 }

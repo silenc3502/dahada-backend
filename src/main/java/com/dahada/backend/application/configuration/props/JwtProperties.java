@@ -15,13 +15,14 @@ import java.time.Duration;
 @ConfigurationProperties(prefix = "app.jwt")
 public class JwtProperties {
 
+    private String issuer;
     private String secret;
     private TokenPolicy tokenPolicy = new TokenPolicy();
 
     @Getter
     @Setter
     @ToString
-    static class TokenPolicy {
+    public static class TokenPolicy {
         private String accessTokenName;
         private Duration accessTokenLife;
         private String refreshTokenName;

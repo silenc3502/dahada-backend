@@ -1,6 +1,7 @@
 package com.dahada.backend.application.auth.provider;
 
 import com.dahada.backend.application.configuration.props.JwtProperties;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +43,9 @@ public class JwtService {
     public boolean validate(String token) {
         try {
             parser.parse(token);
-            return true;
+            final String payload = token.substring(0, token.lastIndexOf('.') + 1);
+            final Date expiration = ((Claims) parser.parse(payload).getBody()).getExpiration();
+            return new Date().before(expiration);
         } catch (Throwable t) {
             return false;
         }

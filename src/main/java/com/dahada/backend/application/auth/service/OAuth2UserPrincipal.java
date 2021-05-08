@@ -14,7 +14,7 @@ import java.util.Map;
 @ToString
 @RequiredArgsConstructor
 public class OAuth2UserPrincipal implements UserDetails {
-    private final String sig;
+    private final String signature;
     private final Provider provider;
     private final String email;
     private final String name;
