@@ -39,17 +39,17 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String signature = generateUserSignature();
+    @Column(nullable = false, updatable = false)
+    private final String signature = generateUserSignature();
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.DAHADA_USER;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
     private UserProfile profile;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
     private OAuth2Authentication oauth2Authentication;
 
     public User(String email, String name) {
@@ -63,6 +63,10 @@ public class User extends BaseTimeEntity {
 
     public void addProfile(UserProfile profile) {
         this.profile = profile;
+    }
+
+    public void addOAuth2Info(OAuth2Authentication authentication) {
+        this.oauth2Authentication = authentication;
     }
 
     private String generateUserSignature() {

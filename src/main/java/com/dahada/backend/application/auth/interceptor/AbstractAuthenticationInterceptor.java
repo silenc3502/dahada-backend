@@ -20,9 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 abstract class AbstractAuthenticationInterceptor implements HandlerInterceptor {
 
-    private Authenticator authenticator;
-    private AuthenticationSuccessHandler successHandler;
-    private AuthenticationFailureHandler failureHandler;
+    private final Authenticator authenticator;
+    private final AuthenticationSuccessHandler successHandler;
+    private final AuthenticationFailureHandler failureHandler;
+
+    public AbstractAuthenticationInterceptor(Authenticator authenticator, AuthenticationSuccessHandler successHandler, AuthenticationFailureHandler failureHandler) {
+        this.authenticator = authenticator;
+        this.successHandler = successHandler;
+        this.failureHandler = failureHandler;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

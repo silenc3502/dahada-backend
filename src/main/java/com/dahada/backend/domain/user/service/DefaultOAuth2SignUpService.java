@@ -1,6 +1,8 @@
 package com.dahada.backend.domain.user.service;
 
+import com.dahada.backend.domain.authentication.OAuth2Authentication;
 import com.dahada.backend.domain.common.exception.UserAlreadyExistException;
+import com.dahada.backend.domain.common.vo.Email;
 import com.dahada.backend.domain.user.UserRepository;
 import com.dahada.backend.domain.user.enitity.User;
 import com.dahada.backend.domain.user.enitity.UserProfile;
@@ -29,7 +31,11 @@ public class DefaultOAuth2SignUpService implements OAuth2SignUpService {
 
         final User newUser = new User(request.getEmail(), request.getName());
         final UserProfile profile = new UserProfile(newUser, null, null);
+        final OAuth2Authentication oauth2 = new OAuth2Authentication(
+                newUser, Email.of(request.getEmail()), request.getProvider(), request.getAttributes()
+        );
         newUser.addProfile(profile);
+        newUser.addOAuth2Info(oauth2);
         repository.save(newUser);
     }
 }

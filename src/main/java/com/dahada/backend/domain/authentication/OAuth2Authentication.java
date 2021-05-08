@@ -4,7 +4,9 @@ import com.dahada.backend.domain.common.converter.MapAttributeConverter;
 import com.dahada.backend.domain.common.entity.BaseTimeEntity;
 import com.dahada.backend.domain.common.vo.Email;
 import com.dahada.backend.domain.user.enitity.User;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Map;
@@ -12,8 +14,12 @@ import java.util.Map;
 /**
  * @author nobody
  */
-@Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(
+        name = "oauth2_authentication"
+)
 public class OAuth2Authentication extends BaseTimeEntity {
 
     @Id
@@ -28,12 +34,6 @@ public class OAuth2Authentication extends BaseTimeEntity {
     private Email email;
 
     /**
-     * OAuth2.0 제공자들이 부여하는 key
-     */
-    @Column(nullable = false)
-    private String oauth2Key;
-
-    /**
      * 제공자 타입
      */
     @Column(nullable = false)
@@ -43,7 +43,15 @@ public class OAuth2Authentication extends BaseTimeEntity {
     /**
      * 인증 결과로 받은 json 값
      */
+    @Lob
     @Convert(converter = MapAttributeConverter.class)
     @Column(nullable = false)
     private Map<String, Object> attributes;
+
+    public OAuth2Authentication(User user, Email email, Provider provider, Map<String, Object> attributes) {
+        this.user = user;
+        this.email = email;
+        this.provider = provider;
+        this.attributes = attributes;
+    }
 }

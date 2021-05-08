@@ -1,13 +1,13 @@
 package com.dahada.backend.application.auth.interceptor;
 
 import com.dahada.backend.application.auth.dto.Authentication;
+import com.dahada.backend.application.auth.handler.AuthenticationSuccessHandler;
 import com.dahada.backend.application.auth.oauth2.OAuth2ProfileQueryService;
 import com.dahada.backend.application.auth.oauth2.OAuth2UserInfo;
 import com.dahada.backend.application.auth.service.OAuth2UserDetailsService;
 import com.dahada.backend.application.auth.service.OAuth2UserPrincipal;
 import com.dahada.backend.application.auth.service.UserDetails;
 import com.dahada.backend.domain.authentication.Provider;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,16 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class OAuth2AuthenticationInterceptor extends AbstractAuthenticationInterceptor {
 
     private final OAuth2ProfileQueryService oAuth2ProfileQueryService;
     private final OAuth2UserDetailsService detailsService;
 
+    public OAuth2AuthenticationInterceptor(OAuth2ProfileQueryService oAuth2ProfileQueryService, OAuth2UserDetailsService detailsService, AuthenticationSuccessHandler successHandler) {
+        super(null, successHandler, null);
+        this.oAuth2ProfileQueryService = oAuth2ProfileQueryService;
+        this.detailsService = detailsService;
+    }
 
     /**
      * OAuth2는 이미 인증이 완료된 후에 오기 때문에 UserPrincipal만 넘겨줌.
