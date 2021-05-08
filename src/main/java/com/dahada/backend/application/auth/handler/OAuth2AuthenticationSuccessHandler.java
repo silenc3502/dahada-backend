@@ -29,16 +29,20 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         final OAuth2UserPrincipal principal = (OAuth2UserPrincipal) authentication.getUserDetails();
+        final String signature = determineSignature(principal);
 
+        final Map<String, Object> payload = principalToMap(principal, signature);
+        final Triple<String, String, Long> issuedTokenInfo = tokenProvider.issueRefreshToken(payload);
+        setCookieForResponse(issuedTokenInfo, response);
+        redirect(response);
+    }
+
+    private String determineSignature(OAuth2UserPrincipal principal) {
         String signature = principal.getSignature();
         if (!principal.isRegisteredUser()) {
             signature = requestSignUp(principal);
         }
-
-        final Map<String, Object> data = principalToMap(principal, signature);
-        final Triple<String, String, Long> issuedTokenInfo = tokenProvider.issueRefreshToken(data);
-        setCookieForResponse(issuedTokenInfo, response);
-        redirect(response);
+        return signature;
     }
 
     private void redirect(HttpServletResponse response) {

@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -13,10 +14,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class JwtService {
 
     private final JwtParser parser;
+    private final SecretKey secretKey;
     private final static Map<String, Object> HEADERS = new HashMap<>();
 
     static {
@@ -25,11 +28,11 @@ public class JwtService {
 
     public JwtService(JwtProperties properties) {
         String secret = properties.getSecret();
-        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         parser = Jwts.parserBuilder().setSigningKey(secretKey).build();
     }
 
-    public String createToken(JwtPayload payload) {
+    public String createToken(JwtTokenParam payload) {
         return Jwts.builder()
                 .setHeader(HEADERS)
                 .setSubject(payload.getSubject())
@@ -37,6 +40,7 @@ public class JwtService {
                 .setIssuedAt(payload.getIssuedAt())
                 .setExpiration(payload.getExpiredAt())
                 .claim("info", payload.getPayload())
+                .signWith(secretKey)
                 .compact();
     }
 
@@ -48,6 +52,15 @@ public class JwtService {
             return new Date().before(expiration);
         } catch (Throwable t) {
             return false;
+        }
+    }
+
+    public Map<String, Object> extractPayload(String token) {
+        try {
+            return parser.parseClaimsJws(token).getBody();
+        } catch (Throwable t) {
+            log.error(t.getMessage(), t);
+            return new HashMap<>();
         }
     }
 

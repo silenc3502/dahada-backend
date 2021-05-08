@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,5 +28,9 @@ public class JwtProperties {
         private Duration accessTokenLife;
         private String refreshTokenName;
         private Duration refreshTokenLife;
+
+        public List<String> getTokenNames() {
+            return List.of(accessTokenName, refreshTokenName);
+        }
     }
 }

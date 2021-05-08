@@ -29,6 +29,12 @@ public class DefaultOAuth2SignUpService implements OAuth2SignUpService {
             throw new UserAlreadyExistException("사용자가 이미 존재합니다.");
         }
 
+        final User newUser = makeNewUser(request);
+        repository.save(newUser);
+        return newUser.getSignature();
+    }
+
+    private User makeNewUser(OAuth2SignUpUserRequest request) {
         final User newUser = new User(request.getEmail(), request.getName());
         final UserProfile profile = new UserProfile(newUser, null, null);
         final OAuth2Authentication oauth2 = new OAuth2Authentication(
@@ -36,7 +42,6 @@ public class DefaultOAuth2SignUpService implements OAuth2SignUpService {
         );
         newUser.addProfile(profile);
         newUser.addOAuth2Info(oauth2);
-        repository.save(newUser);
-        return newUser.getSignature();
+        return newUser;
     }
 }

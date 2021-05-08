@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Getter
 @ToString
-public class JwtPayload {
+public class JwtTokenParam {
     private final String subject;
     private final String issuer;
     private final Date issuedAt;
@@ -19,7 +19,7 @@ public class JwtPayload {
     private final Map<String, Object> payload;
 
     @Builder
-    public JwtPayload(String subject, String issuer, Date issuedAt, Date expiredAt, Map<String, Object> payload) {
+    public JwtTokenParam(String subject, String issuer, Date issuedAt, Date expiredAt, Map<String, Object> payload) {
         this.subject = subject;
         this.issuer = issuer;
         this.issuedAt = issuedAt;
