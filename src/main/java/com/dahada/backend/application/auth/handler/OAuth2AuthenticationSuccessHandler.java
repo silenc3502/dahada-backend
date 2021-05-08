@@ -21,6 +21,13 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         final OAuth2UserPrincipal principal = (OAuth2UserPrincipal) authentication.getUserDetails();
+        if (!principal.isRegisteredUser()) {
+            requestSignUp(principal);
+        }
+        
+    }
+
+    private void requestSignUp(OAuth2UserPrincipal principal) {
         final OAuth2SignUpUserRequest signUpUserRequest = new OAuth2SignUpUserRequest(
                 principal.getName(), principal.getEmail(),
                 principal.getProvider(), principal.getAttributes()

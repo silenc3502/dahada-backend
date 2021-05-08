@@ -7,7 +7,7 @@ import com.dahada.backend.application.auth.dto.AuthenticationToken;
 import com.dahada.backend.application.auth.exception.AuthenticationException;
 import com.dahada.backend.application.auth.handler.AuthenticationFailureHandler;
 import com.dahada.backend.application.auth.handler.AuthenticationSuccessHandler;
-import com.dahada.backend.application.auth.provider.Authenticator;
+import com.dahada.backend.application.auth.handler.Authenticator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 

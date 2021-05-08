@@ -1,4 +1,4 @@
-package com.dahada.backend.application.auth.provider;
+package com.dahada.backend.application.auth.handler;
 
 import com.dahada.backend.application.auth.dto.Authentication;
 import com.dahada.backend.application.auth.dto.AuthenticationToken;

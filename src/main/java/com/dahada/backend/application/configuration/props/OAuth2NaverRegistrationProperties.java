@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@ConfigurationProperties(prefix = "spring.oauth2.registration.naver")
+@ConfigurationProperties(prefix = "app.oauth2.registration.naver")
 public class OAuth2NaverRegistrationProperties {
     private String clientId;
     private String clientSecret;

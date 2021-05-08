@@ -1,6 +1,7 @@
 package com.dahada.backend.application.auth.interceptor;
 
 import com.dahada.backend.application.auth.dto.Authentication;
+import com.dahada.backend.application.auth.handler.AuthenticationFailureHandler;
 import com.dahada.backend.application.auth.handler.AuthenticationSuccessHandler;
 import com.dahada.backend.application.auth.oauth2.OAuth2ProfileQueryService;
 import com.dahada.backend.application.auth.oauth2.OAuth2UserInfo;
@@ -23,8 +24,13 @@ public class OAuth2AuthenticationInterceptor extends AbstractAuthenticationInter
     private final OAuth2ProfileQueryService oAuth2ProfileQueryService;
     private final OAuth2UserDetailsService detailsService;
 
-    public OAuth2AuthenticationInterceptor(OAuth2ProfileQueryService oAuth2ProfileQueryService, OAuth2UserDetailsService detailsService, AuthenticationSuccessHandler successHandler) {
-        super(null, successHandler, null);
+    public OAuth2AuthenticationInterceptor(
+            OAuth2ProfileQueryService oAuth2ProfileQueryService,
+            OAuth2UserDetailsService detailsService,
+            AuthenticationSuccessHandler successHandler,
+            AuthenticationFailureHandler failureHandler
+    ) {
+        super(null, successHandler, failureHandler);
         this.oAuth2ProfileQueryService = oAuth2ProfileQueryService;
         this.detailsService = detailsService;
     }

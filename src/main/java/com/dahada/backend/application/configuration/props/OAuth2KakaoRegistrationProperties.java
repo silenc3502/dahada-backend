@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@ConfigurationProperties(prefix = "spring.oauth2.registration.kakao")
+@ConfigurationProperties(prefix = "app.oauth2.registration.kakao")
 public class OAuth2KakaoRegistrationProperties {
     private String clientId;
     private String clientSecret;
