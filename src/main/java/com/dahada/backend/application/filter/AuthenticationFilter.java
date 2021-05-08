@@ -22,7 +22,7 @@ import java.util.Optional;
  * fixme: 보안 상 refresh_token을 이용해 access_token을 발급하는 절차가 필요함.
  */
 @Slf4j
-@Order(1)
+@Order(FilterConstant.AUTHENTICATION_FILTER_ORDER)
 @Component
 @RequiredArgsConstructor
 public class AuthenticationFilter implements Filter {
@@ -38,7 +38,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.debug("AuthenticationFilter#doFilter");
         if (hasNotAccessToken((HttpServletRequest) request)) {
             process((HttpServletRequest) request, (HttpServletResponse) response);
             log.debug("AuthenticationFilter#doFilter#process");
@@ -118,7 +117,7 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-        log.info("Filter has been destroyed.");
         Filter.super.destroy();
+        log.info("AuthenticationFilter has been destroyed.");
     }
 }
