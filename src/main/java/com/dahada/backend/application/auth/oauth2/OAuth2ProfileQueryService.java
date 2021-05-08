@@ -29,17 +29,11 @@ public class OAuth2ProfileQueryService {
             service.signRequest(token, oAuthRequest);
 
             final Response execute = service.execute(oAuthRequest);
-            log.debug("code: {}", execute.getCode());
-            log.debug("headers: {}", execute.getHeaders());
             log.debug("body: {}", execute.getBody());
 
             final Map<String, Object> attributes = ConvertUtil.toMap(execute.getBody());
             final OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.get(request.getProvider(), attributes);
             log.debug("oAuth2UserInfo: {}", oAuth2UserInfo);
-            log.debug("id: {}", oAuth2UserInfo.getId());
-            log.debug("email: {}", oAuth2UserInfo.getEmail());
-            log.debug("image: {}", oAuth2UserInfo.getImageUrl());
-            log.debug("name: {}", oAuth2UserInfo.getName());
             return oAuth2UserInfo;
         } catch (IOException | InterruptedException | ExecutionException e) {
             log.error(e.getMessage(), e);
