@@ -3,7 +3,7 @@ package com.dahada.backend.domain.user.service;
 import com.dahada.backend.domain.user.service.dto.CheckUserExistenceRequest;
 
 /**
- * @author hyeyoom
+ * @author nobody
  */
 public interface UserQueryService {
 

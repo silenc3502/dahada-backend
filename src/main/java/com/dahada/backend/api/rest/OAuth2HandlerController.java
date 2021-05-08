@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@RequestMapping("/oauth")
+@RequestMapping("/oauth2")
 @RestController
 public class OAuth2HandlerController {
 
@@ -21,6 +21,7 @@ public class OAuth2HandlerController {
         final OAuth20Service service = OAuth2ServiceFactory.valueOf(provider.toUpperCase()).getService();
         final String authorizationUrl = service.getAuthorizationUrl();
         log.debug("authorizationUrl: {}", authorizationUrl);
+        //
         response.sendRedirect(authorizationUrl);
     }
 }

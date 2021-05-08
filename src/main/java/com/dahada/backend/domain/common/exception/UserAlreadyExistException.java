@@ -1,7 +1,7 @@
 package com.dahada.backend.domain.common.exception;
 
 /**
- * @author hyeyoom
+ * @author nobody
  */
 public final class UserAlreadyExistException extends IllegalStateException {
     public UserAlreadyExistException(String s) {

@@ -10,7 +10,7 @@ import javax.persistence.*;
 /**
  * 일반 사용자 도메인
  *
- * @author hyeyoom
+ * @author nobody
  */
 @Entity
 @Table(

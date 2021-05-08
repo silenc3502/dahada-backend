@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author hyeyoom
+ * @author nobody
  */
 public interface AuthenticationSuccessHandler {
     void onSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication);

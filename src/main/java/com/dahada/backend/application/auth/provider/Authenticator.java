@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 /**
  * 인증 확인 모듈
  *
- * @author hyeyoom
+ * @author nobody
  */
 public interface Authenticator {
     @Nullable

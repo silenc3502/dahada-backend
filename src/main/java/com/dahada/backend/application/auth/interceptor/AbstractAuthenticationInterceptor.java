@@ -14,6 +14,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author nobody
+ */
 @Slf4j
 abstract class AbstractAuthenticationInterceptor implements HandlerInterceptor {
 
@@ -49,10 +52,12 @@ abstract class AbstractAuthenticationInterceptor implements HandlerInterceptor {
         failureHandler.onFailure(request, response, e);
     }
 
-    private Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
+    protected Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         final AuthenticationToken token = convert(request);
         return authenticator.authenticate(token);
     }
 
-    abstract AuthenticationToken convert(HttpServletRequest request);
+    protected AuthenticationToken convert(HttpServletRequest request) {
+        throw new IllegalStateException("Not implemented yet.");
+    }
 }

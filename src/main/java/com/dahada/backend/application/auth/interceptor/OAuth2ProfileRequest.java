@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public final class OAuth2CallbackParamHolder {
+public final class OAuth2ProfileRequest {
     private Provider provider;
     private String code;
     private String state;

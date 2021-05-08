@@ -7,7 +7,7 @@ import com.dahada.backend.domain.user.enitity.User;
 import javax.persistence.*;
 
 /**
- * @author hyeyoom
+ * @author nobody
  */
 @Entity
 public class OAuth2Authentication extends BaseTimeEntity {
