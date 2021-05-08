@@ -6,5 +6,5 @@ package com.dahada.backend.domain.authentication;
 public enum Provider {
     GOOGLE,
     NAVER,
-    KAKAO
+    KAKAO,
 }

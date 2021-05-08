@@ -1,4 +1,4 @@
-package com.dahada.backend.application.utils;
+package com.dahada.backend.domain.common.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +13,14 @@ public final class ConvertUtil {
     public static Map<String, Object> toMap(String json) {
         try {
             return MAPPER.readValue(json, Map.class);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
+
+    public static String stringify(Object data) {
+        try {
+            return MAPPER.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             return null;
         }

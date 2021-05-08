@@ -1,10 +1,12 @@
 package com.dahada.backend.application.auth.oauth2;
 
 import com.dahada.backend.domain.authentication.Provider;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Map;
 
+@Getter
 @ToString
 public abstract class OAuth2UserInfo {
     protected final Provider provider;

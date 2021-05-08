@@ -2,7 +2,7 @@ package com.dahada.backend.application.auth.oauth2;
 
 import com.dahada.backend.application.auth.OAuth2ServiceFactory;
 import com.dahada.backend.application.auth.interceptor.OAuth2ProfileRequest;
-import com.dahada.backend.application.utils.ConvertUtil;
+import com.dahada.backend.domain.common.utils.ConvertUtil;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
