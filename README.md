@@ -1,3 +1,8 @@
+# authors
+
+- 백엔드: hyeyoom
+- 프론트: unknown
+
 # 스프링 컨벤션
 
 1. 글로벌 설정

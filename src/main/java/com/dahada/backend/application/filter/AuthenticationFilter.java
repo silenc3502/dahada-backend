@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * access token 발급 자동화를 위한 필터.
- * fixme: 보안 상 refresh_token을 이용해 access_token을 발급하는 절차가 필요함.
+ * NOTE: 보안 상 refresh_token을 이용해 access_token을 발급하는 절차가 필요함.
  */
 @Slf4j
 @Order(FilterConstant.AUTHENTICATION_FILTER_ORDER)
