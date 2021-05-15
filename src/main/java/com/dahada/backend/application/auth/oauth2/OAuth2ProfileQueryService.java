@@ -23,7 +23,6 @@ public class OAuth2ProfileQueryService {
             final OAuth2ServiceFactory serviceHolder = OAuth2ServiceFactory.getServiceHolder(request.getProvider());
             final OAuth20Service service = serviceHolder.getService();
             final OAuth2AccessToken token = service.getAccessToken(request.getCode());
-            log.debug("token: {}", token);
 
             final OAuthRequest oAuthRequest = new OAuthRequest(serviceHolder.getVerb(), serviceHolder.getResourceUrl());
             service.signRequest(token, oAuthRequest);

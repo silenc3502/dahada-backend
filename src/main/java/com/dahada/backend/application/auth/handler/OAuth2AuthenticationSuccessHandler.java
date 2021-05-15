@@ -1,11 +1,16 @@
 package com.dahada.backend.application.auth.handler;
 
+import com.dahada.backend.application.auth.SecurityContext;
+import com.dahada.backend.application.auth.SecurityContextHolder;
 import com.dahada.backend.application.auth.dto.Authentication;
 import com.dahada.backend.application.auth.provider.TokenProvider;
 import com.dahada.backend.application.auth.service.OAuth2UserPrincipal;
+import com.dahada.backend.application.user.UserInfo;
+import com.dahada.backend.domain.common.utils.ConvertUtil;
 import com.dahada.backend.domain.user.service.OAuth2SignUpService;
 import com.dahada.backend.domain.user.service.dto.OAuth2SignUpUserRequest;
 import com.dahada.backend.lang.Triple;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
@@ -15,6 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -34,7 +40,14 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
         final Map<String, Object> payload = principalToMap(principal, signature);
         final Triple<String, String, Long> issuedTokenInfo = tokenProvider.issueRefreshToken(payload);
         setCookieForResponse(issuedTokenInfo, response);
+        processSecurity(payload);
         redirect(response);
+    }
+
+    private void processSecurity(Map<String, Object> payload) {
+        final UserInfo userInfo = ConvertUtil.toObject(payload, UserInfo.class);
+        SecurityContextHolder.clear();
+        SecurityContextHolder.setContext(SecurityContext.of(userInfo));
     }
 
     private String determineSignature(OAuth2UserPrincipal principal) {
@@ -47,7 +60,7 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
 
     private void redirect(HttpServletResponse response) {
         try {
-            response.sendRedirect("/");
+            response.sendRedirect("/oauth2/redirect");
         } catch (IOException e) {
             throw new RuntimeException("TODO: 이거 처리 고쳐라.", e);
         }

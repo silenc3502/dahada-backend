@@ -1,9 +1,9 @@
 package com.dahada.backend.application.filter;
 
 import com.dahada.backend.application.auth.provider.TokenProvider;
+import com.dahada.backend.application.auth.utils.CookieUtil;
 import com.dahada.backend.application.configuration.props.JwtProperties;
 import com.dahada.backend.lang.Triple;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -13,9 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * access token 발급 자동화를 위한 필터.
@@ -24,11 +22,19 @@ import java.util.Optional;
 @Slf4j
 @Order(FilterConstant.AUTHENTICATION_FILTER_ORDER)
 @Component
-@RequiredArgsConstructor
 public class AuthenticationFilter implements Filter {
 
     private final JwtProperties jwtProperties;
     private final TokenProvider tokenProvider;
+    private final String accessTokenName;
+    private final String refreshTokenName;
+
+    public AuthenticationFilter(JwtProperties jwtProperties, TokenProvider tokenProvider) {
+        this.jwtProperties = jwtProperties;
+        this.tokenProvider = tokenProvider;
+        accessTokenName = jwtProperties.getTokenPolicy().getAccessTokenName();
+        refreshTokenName = jwtProperties.getTokenPolicy().getRefreshTokenName();
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,37 +44,28 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (hasRefreshToken((HttpServletRequest) request) && hasNotAccessToken((HttpServletRequest) request)) {
-            process((HttpServletRequest) request, (HttpServletResponse) response);
-            log.debug("AuthenticationFilter#doFilter#process");
+        final HttpServletRequest httpRequest = (HttpServletRequest) request;
+        final HttpServletResponse httpResponse = (HttpServletResponse) response;
+        if (CookieUtil.has(httpRequest, refreshTokenName) && CookieUtil.hasNot(httpRequest, accessTokenName)) {
+            process(httpRequest, httpResponse);
         }
         chain.doFilter(request, response);
     }
 
-    // TODO: 중복 제거 가능
-    private boolean hasNotAccessToken(HttpServletRequest request) {
-        return extractTokenCookie(request, jwtProperties.getTokenPolicy().getAccessTokenName()).isEmpty();
-    }
-
-    // TODO: 중복 제거 가능
-    private boolean hasRefreshToken(HttpServletRequest request) {
-        return extractTokenCookie(request, jwtProperties.getTokenPolicy().getRefreshTokenName()).isPresent();
-    }
-
     private void process(HttpServletRequest request, HttpServletResponse response) {
-        final Optional<Cookie> maybeRefreshTokenCookie
-                = extractTokenCookie(request, jwtProperties.getTokenPolicy().getRefreshTokenName());
-        if (maybeRefreshTokenCookie.isEmpty()) {
-            log.debug("refreshToken not found.");
+        final Cookie refreshTokenCookie = CookieUtil.getCookie(request, refreshTokenName);
+        if (refreshTokenCookie == null) {
+            return;
+        }
+        final String refreshToken = refreshTokenCookie.getValue();
+        if (!tokenProvider.checkTokenValidation(refreshToken)) {
+            log.warn("Invalid token found.");
+            CookieUtil.invalidate(request, response, jwtProperties.getTokenPolicy().getTokenNames());
             return;
         }
 
-        final String refreshToken = processRefreshToken(request, response, maybeRefreshTokenCookie);
         log.debug("Found refreshToken: {}", refreshToken);
-
-        if (refreshToken != null) {
-            issueAccessToken(refreshToken, response);
-        }
+        issueAccessToken(refreshToken, response);
     }
 
     private void issueAccessToken(String refreshToken, HttpServletResponse response) {
@@ -76,42 +73,6 @@ public class AuthenticationFilter implements Filter {
         log.debug("payload from refresh token: {}", payload);
         final Triple<String, String, Long> results = tokenProvider.issueAccessToken((Map<String, Object>) payload.get("info"));
         setCookieForResponse(results, response);
-    }
-
-    private String processRefreshToken(HttpServletRequest request, HttpServletResponse response, Optional<Cookie> maybeRefreshTokenCookie) {
-        final String token = extractTokenFromCookie(maybeRefreshTokenCookie);
-        if (!tokenProvider.checkTokenValidation(token)) {
-            invalidateTokens(request, response);
-        }
-        return token;
-    }
-
-    // TODO: 중복 - invalidateTokens
-    private void invalidateTokens(HttpServletRequest request, HttpServletResponse response) {
-        log.debug("Refresh token is invalid. Cookies are going to be deleted.");
-        Arrays.stream(request.getCookies())
-                .filter(cookie -> jwtProperties.getTokenPolicy().getTokenNames().contains(cookie.getName()))
-                .forEach(cookie -> {
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                });
-    }
-
-    private Optional<Cookie> extractTokenCookie(HttpServletRequest request, String tokenName) {
-        final Cookie[] cookies = request.getCookies();
-        if (cookies == null) {
-            return Optional.empty();
-        }
-        return Arrays.stream(cookies)
-                .filter(cookie -> cookie.getName().equals(tokenName))
-                .findFirst();
-    }
-
-    private String extractTokenFromCookie(Optional<Cookie> refreshTokenCookie) {
-        if (refreshTokenCookie.isEmpty()) {
-            return null;
-        }
-        return refreshTokenCookie.get().getValue();
     }
 
     private void setCookieForResponse(Triple<String, String, Long> issuedTokenInfo, HttpServletResponse response) {

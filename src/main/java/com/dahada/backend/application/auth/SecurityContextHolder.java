@@ -2,6 +2,7 @@ package com.dahada.backend.application.auth;
 
 public final class SecurityContextHolder {
     private static final ThreadLocal<SecurityContext> contextHolder = new ThreadLocal<>();
+    private static final SecurityContext EMPTY_CONTEXT = new SecurityContext(null);
 
     public static void clear() {
         contextHolder.remove();
@@ -14,9 +15,8 @@ public final class SecurityContextHolder {
     public static SecurityContext getContext() {
         final SecurityContext ctx = contextHolder.get();
         if (ctx == null) {
-            final SecurityContext emptyContext = new SecurityContext(null);
-            setContext(emptyContext);
-            return emptyContext;
+            setContext(EMPTY_CONTEXT);
+            return EMPTY_CONTEXT;
         }
         return ctx;
     }
