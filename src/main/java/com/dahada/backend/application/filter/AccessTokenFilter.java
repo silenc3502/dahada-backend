@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
@@ -41,17 +42,44 @@ public class AccessTokenFilter implements Filter {
             final Optional<Cookie> maybeCookie = extractTokenCookie((HttpServletRequest) request, jwtProperties.getTokenPolicy().getAccessTokenName());
             if (maybeCookie.isPresent()) {
                 final String accessToken = maybeCookie.get().getValue();
-                if (tokenProvider.checkTokenValidation(accessToken)) {
-                    ;
+                if (!tokenProvider.checkTokenValidation(accessToken)) {
+                    log.warn("잘못된 토큰으로 요청하였습니다.");
+                    // TODO: 특정 토큰만 무효화 하도록 변경
+                    invalidateTokens((HttpServletRequest) request, (HttpServletResponse) response);
+                    SecurityContextHolder.clear();
+                    chain.doFilter(request, response);
+                    return;
                 }
-                final Map<String, Object> payloadMap = tokenProvider.extractPayloadFromToken(accessToken);
-                final UserInfo userInfo = ConvertUtil.toObject((Map<String, Object>) payloadMap.get("info"), UserInfo.class);
-                final SecurityContext ctx = SecurityContext.of(userInfo);
-                SecurityContextHolder.setContext(ctx);
+                final UserInfo userInfo = getUserInfo(accessToken);
+                setSecurityContext(userInfo);
                 log.debug("AuthenticatedUser: {}", userInfo);
+            } else {
+                log.warn("컨텍스트 무효화.");
+                SecurityContextHolder.clear();
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private void setSecurityContext(UserInfo userInfo) {
+        final SecurityContext ctx = SecurityContext.of(userInfo);
+        SecurityContextHolder.setContext(ctx);
+    }
+
+    // TODO: 중복 - invalidateTokens
+    private void invalidateTokens(HttpServletRequest request, HttpServletResponse response) {
+        log.debug("Refresh token is invalid. Cookies are going to be deleted.");
+        Arrays.stream(request.getCookies())
+                .filter(cookie -> jwtProperties.getTokenPolicy().getTokenNames().contains(cookie.getName()))
+                .forEach(cookie -> {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                });
+    }
+
+    private UserInfo getUserInfo(String accessToken) {
+        final Map<String, Object> payloadMap = tokenProvider.extractPayloadFromToken(accessToken);
+        return ConvertUtil.toObject((Map<String, Object>) payloadMap.get("info"), UserInfo.class);
     }
 
     private boolean hasAccessToken(HttpServletRequest request) {

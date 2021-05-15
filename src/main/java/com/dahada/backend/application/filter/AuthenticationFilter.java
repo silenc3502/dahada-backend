@@ -38,15 +38,21 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (hasNotAccessToken((HttpServletRequest) request)) {
+        if (hasRefreshToken((HttpServletRequest) request) && hasNotAccessToken((HttpServletRequest) request)) {
             process((HttpServletRequest) request, (HttpServletResponse) response);
             log.debug("AuthenticationFilter#doFilter#process");
         }
         chain.doFilter(request, response);
     }
 
+    // TODO: 중복 제거 가능
     private boolean hasNotAccessToken(HttpServletRequest request) {
         return extractTokenCookie(request, jwtProperties.getTokenPolicy().getAccessTokenName()).isEmpty();
+    }
+
+    // TODO: 중복 제거 가능
+    private boolean hasRefreshToken(HttpServletRequest request) {
+        return extractTokenCookie(request, jwtProperties.getTokenPolicy().getRefreshTokenName()).isPresent();
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) {
@@ -80,6 +86,7 @@ public class AuthenticationFilter implements Filter {
         return token;
     }
 
+    // TODO: 중복 - invalidateTokens
     private void invalidateTokens(HttpServletRequest request, HttpServletResponse response) {
         log.debug("Refresh token is invalid. Cookies are going to be deleted.");
         Arrays.stream(request.getCookies())

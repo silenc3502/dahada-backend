@@ -43,7 +43,6 @@ public class OAuth2AuthenticationInterceptor extends AbstractAuthenticationInter
      * @return 인증 객체
      */
     @Override
-
     protected Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         final OAuth2ProfileRequest profileRequest = parseParameter(request);
         final OAuth2UserInfo oauth2UserInfo = oAuth2ProfileQueryService.requestProfile(profileRequest);
