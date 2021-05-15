@@ -18,6 +18,19 @@ public final class ConvertUtil {
         }
     }
 
+    public static <T> T toObject(Map<String, Object> map, Class<T> type) {
+        return MAPPER.convertValue(map, type);
+    }
+
+    public static <T> T toObject(String json, Class<T> type) {
+        try {
+            final Object object = MAPPER.readValue(json, type.getClass());
+            return type.cast(object);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Unable to convert to object: ");
+        }
+    }
+
     public static String stringify(Object data) {
         try {
             return MAPPER.writeValueAsString(data);

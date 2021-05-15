@@ -1,6 +1,8 @@
 package com.dahada.backend.application.auth.provider;
 
 import com.dahada.backend.application.configuration.props.JwtProperties;
+import com.dahada.backend.application.user.UserInfo;
+import com.dahada.backend.domain.common.utils.ConvertUtil;
 import com.dahada.backend.lang.Triple;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
