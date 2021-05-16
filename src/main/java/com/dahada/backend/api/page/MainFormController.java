@@ -22,15 +22,27 @@ public class MainFormController {
 
     @PostMapping("/reservation-step1")
     public String reservation1(@RequestBody ReservationForm form) {
-        log.debug("step1 - {}", form);
+        form.setCurrentStep("step1");
         session.setAttribute("reservationForm", form);
+        log.debug("step1 - {}", form);
         return "redirect:/";
     }
 
     @PostMapping("/reservation-step2")
     public String reservation2(@RequestBody ReservationForm form) {
-        log.debug("step2 - {}", form);
+        form.setCurrentStep("step2");
         session.setAttribute("reservationForm", form);
+        log.debug("step2 - {}", form);
+        return "redirect:/";
+    }
+
+    @PostMapping("/reservation-step3")
+    public String reservation3(@RequestBody ReservationForm form) {
+        final ReservationForm prev = (ReservationForm) session.getAttribute("reservationForm");
+        form.merge(prev);
+        form.setCurrentStep("step3");
+        session.setAttribute("reservationForm", form);
+        log.debug("step3 - {}", form);
         return "redirect:/";
     }
 }

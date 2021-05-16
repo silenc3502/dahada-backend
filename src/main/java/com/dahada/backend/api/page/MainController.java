@@ -47,7 +47,12 @@ public class MainController {
     }
 
     @GetMapping("/reservation-step3")
-    public String reservation3(Model model) {
+    public String reservation3() {
         return "reservation-step3";
+    }
+
+    @GetMapping("/reservation-step4")
+    public String reservation4() {
+        return "reservation-step4";
     }
 }

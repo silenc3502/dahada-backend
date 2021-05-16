@@ -1,17 +1,13 @@
 package com.dahada.backend.application.auth.interceptor;
 
 import com.dahada.backend.domain.authentication.Provider;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public final class OAuth2ProfileRequest {
-    private Provider provider;
-    private String code;
-    private String state;
+    private final Provider provider;
+    private final String code;
+    private final String state;
 }

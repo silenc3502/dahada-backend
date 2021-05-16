@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Objects;
 
 @Getter
 public enum OAuth2ServiceFactory {
@@ -32,14 +31,6 @@ public enum OAuth2ServiceFactory {
     public static OAuth2ServiceFactory getServiceHolder(Provider provider) {
         try {
             return OAuth2ServiceFactory.valueOf(provider.name().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
-
-    public static OAuth20Service getOAuth20Service(Provider provider) {
-        try {
-            return Objects.requireNonNull(getServiceHolder(provider)).service;
         } catch (IllegalArgumentException e) {
             return null;
         }

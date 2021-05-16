@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=no">
+<title>다하다</title>
+<link rel="stylesheet" href="/css/common.css">
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/script.js"></script>
+</head>
+<body>
+   
+<!--개인정보 수집 및 이용-->
+<div class="dim-layer pop-basic js-popbasic">
+    <div class="dimBg"></div>
+    <div id="layer" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-box">
+                <div class="pop-tit">개인정보 수집 및 이용</div>
+                
+                <div class="pop-conts">
+                    <div class="tit-policy">개인인정보 수집 및 이용</div>
+                    
+                    <div class="policy-conts">다하다 주식회사는 서비스를 신청하시는 분께 정보통신망 이용촉진 및<br>정보보호 등에 관한 법률 등 관련 법령에 따라 개인정보의 수집·이용 목적<br>수집하려는 개인정보의 항목, 개인정보의 보유 및 이용 기간에 대하여<br>안내드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</div>
+                    
+                    <div class="tit-policy">1. 개인정보의 수집·이용 목적</div>
+                    
+                    <div class="policy-conts">이용자 견적 의사 확인, 이용자 본인 식별·인증, 상담 및 방문견적 등<br>각종 서비스 제공을 위한 주식회사 다하다와 협력업체에 정보 제공, 물품 또는<br>서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송, 당사자간<br>계약이행사항 확인, 법령 및 이용약관을 위반에 대한 이용 제한 조치, 부정<br>이용 행위를 포함하여 서비스의 원활한 운영에 지장을 주는 행위에 대한<br>방지 및 제재, 계정도용 및 부정거래 방지, 약관 개정 등의 고지사항 전달<br>분쟁조정을 위한 기록 보존, 민원처리 등 이용자 보호 및 서비스 운영, 서비스<br>이용기록과 접속 빈도 분석, 서비스 이용에 대한 통계, 서비스 분석 및 통계에 따른<br>맞춤 서비스 제공 및 광고 게재, 보안, 프라이버시, 안전 측면에서 이용자가<br>안심하고 이용할 수 있는 서비스 이용환경 구축 등에 이용됩니다.</div>
+                    
+                    <div class="tit-policy">2. 수집하려는 개인정보의 항목</div>
+
+                    <div class="policy-conts">- 회원가입시 : 이름, 휴대폰번호, 이메일주소<br>- 견적신청시 : 이름, 휴대폰번호, 주소</div>
+                    
+                    <div class="tit-policy">3. 수집하려는 개인정보의 항목</div>
+                    
+                    <div class="policy-conts">본 견적신청 목적달성시 지체없이 파기합니다.<br>단, 이용자에게 개인정보 보관기간에 대해 별도의 동의를 얻은 경우<br>또는 아래 법령에서 일정 기간 정보보관 의무를 부과하는 경우에는<br>해당 기간 동안 동의 내용 또는 법령의 규정의 내용 및 목적에 맞게<br>개인정보를 안전하게 보관합니다.<br><br><strong>- 전자상거래 등에서 소비자 보호에 관한 법률</strong>계약 또는 청약철회 등에 관한 기록: 5년 보관<br>대금결제 및 재화 등의 공급에 관한 기록: 5년 보관<br>소비자의 불만 또는 분쟁처리에 관한 기록: 3년 보관<br><br><strong>- 전자금융거래법</strong>전자금융에 관한 기록: 5년 보관<br><br><strong>- 통신비밀보호법</strong>로그인 기록: 3개월</div>
+                </div>
+                
+                <input type="button" value=" " class="pop-close js-popbasic-close">
+            </div>
+        </div>
+    </div>
+</div>
+   
+<!--개인정보 제3자 제공-->
+<div class="dim-layer pop-basic2 js-popbasic2">
+    <div class="dimBg"></div>
+    <div id="layer" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-box">
+                <div class="pop-tit">개인정보 제3자 제공</div>
+                
+                <div class="pop-conts">
+                    <div class="tit-policy">개인인정보 수집 및 이용</div>
+                    
+                    <div class="policy-conts">다하다 주식회사는 서비스를 신청하시는 분께 정보통신망 이용촉진 및<br>정보보호 등에 관한 법률 등 관련 법령에 따라 개인정보의 수집·이용 목적<br>수집하려는 개인정보의 항목, 개인정보의 보유 및 이용 기간에 대하여<br>안내드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</div>
+                    
+                    <div class="tit-policy">1. 개인정보의 수집·이용 목적</div>
+                    
+                    <div class="policy-conts">이용자 견적 의사 확인, 이용자 본인 식별·인증, 상담 및 방문견적 등<br>각종 서비스 제공을 위한 주식회사 다하다와 협력업체에 정보 제공, 물품 또는<br>서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송, 당사자간<br>계약이행사항 확인, 법령 및 이용약관을 위반에 대한 이용 제한 조치, 부정<br>이용 행위를 포함하여 서비스의 원활한 운영에 지장을 주는 행위에 대한<br>방지 및 제재, 계정도용 및 부정거래 방지, 약관 개정 등의 고지사항 전달<br>분쟁조정을 위한 기록 보존, 민원처리 등 이용자 보호 및 서비스 운영, 서비스<br>이용기록과 접속 빈도 분석, 서비스 이용에 대한 통계, 서비스 분석 및 통계에 따른<br>맞춤 서비스 제공 및 광고 게재, 보안, 프라이버시, 안전 측면에서 이용자가<br>안심하고 이용할 수 있는 서비스 이용환경 구축 등에 이용됩니다.</div>
+                    
+                    <div class="tit-policy">2. 수집하려는 개인정보의 항목</div>
+
+                    <div class="policy-conts">- 회원가입시 : 이름, 휴대폰번호, 이메일주소<br>- 견적신청시 : 이름, 휴대폰번호, 주소</div>
+                    
+                    <div class="tit-policy">3. 수집하려는 개인정보의 항목</div>
+                    
+                    <div class="policy-conts">본 견적신청 목적달성시 지체없이 파기합니다.<br>단, 이용자에게 개인정보 보관기간에 대해 별도의 동의를 얻은 경우<br>또는 아래 법령에서 일정 기간 정보보관 의무를 부과하는 경우에는<br>해당 기간 동안 동의 내용 또는 법령의 규정의 내용 및 목적에 맞게<br>개인정보를 안전하게 보관합니다.<br><br><strong>- 전자상거래 등에서 소비자 보호에 관한 법률</strong>계약 또는 청약철회 등에 관한 기록: 5년 보관<br>대금결제 및 재화 등의 공급에 관한 기록: 5년 보관<br>소비자의 불만 또는 분쟁처리에 관한 기록: 3년 보관<br><br><strong>- 전자금융거래법</strong>전자금융에 관한 기록: 5년 보관<br><br><strong>- 통신비밀보호법</strong>로그인 기록: 3개월</div>
+                </div>
+                
+                <input type="button" value=" " class="pop-close js-popbasic2-close">
+            </div>
+        </div>
+    </div>
+</div>
+    
+<header class="header">
+    <div class="hd">
+        <a href="#"><img src="/img/img_logo1.png" alt="다하다" class="hd-logo"></a>
+        
+        <ul class="hd-nav">
+            <li><a href="#">마이페이지</a></li>
+            <li><a href="#">로그인</a></li>
+            <li><a href="service.html">서비스</a></li>
+            <li class="active"><a href="#">다하다와 함께하기</a></li>
+        </ul>
+    </div>
+    
+    <input type="button" value=" " class="btn-hamburger">
+</header>
+
+<ul class="quick-menu">
+    <li><a href="#"><img src="/img/ico_sns1.png" alt="네이버"></a></li>
+    <li><a href="#"><img src="/img/ico_sns2.png" alt="카카오톡"></a></li>
+    <li><a href="#"><img src="/img/ico_chat1.png" alt="채팅"></a></li>
+</ul>
+
+<!--모바일 메뉴-->
+<div class="m-header">
+    <div class="m-hd">
+        <img src="/img/img_logo1.png" alt="로고" class="m-logo">
+        <input type="button" value=" " class="btn-hamburger js-hamburger">
+    </div>
+</div>
+
+<div class="m-gnb">
+    <div class="top-area">
+        <img src="/img/img_logo1.png" alt="다하다" class="m-logo">
+        <input type="button" value=" " class="btn-close js-hamburger-close">
+    </div>
+
+    <ul class="list-gnb">
+        <li class="active"><a href="index.html">HOME</a></li>
+        <li><a href="#">마이페이지</a></li>
+        <li><a href="service.html">서비스</a></li>
+        <li><a href="#">다하다와 함께하기</a></li>
+    </ul>
+
+    <input type="button" value="로그아웃" class="btn-logout">
+</div>
+
+<div class="m-gnb-bg js-hamburger-close"></div>
+<!--//모바일 메뉴-->
+
+<section class="reserve step-v4">
+    <div class="service-info2">
+        <div class="pos">
+            <div class="service-theme">가전케어 서비스</div>
+
+            <div class="service-status2">
+                <div>
+                    <div class="status-num">53,562</div>
+                    <div class="tit-status">누적 이용자</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">213</div>
+                    <div class="tit-status">등록파트너스</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">12,552</div>
+                    <div class="tit-status">리뷰 수</div>
+                </div>
+                
+                <span class="division-line"></span>
+
+                <div>
+                    <div class="status-num">6.5h</div>
+                    <div class="tit-status">평균 서비스 시간</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reserve-area">
+        <div class="wrap wrap-v1">
+            <div class="tit-area tit-area-v1">
+                <div class="tit-sub">서비스가 필요한 주소를 입력하세요.</div>
+                <div class="tit-sub-conts">고객님께서 선택하신 서비스 지역과 상세주소를 입력해주세요!</div>
+            </div>
+
+            <div class="progress-area">
+                <div class="progress-percent">50%</div>
+
+                <div class="bar-progress">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+            </div>
+            
+            <div class="box-reserve">
+                <div class="inner">
+                    <ul class="user-info">
+                        <li>
+                            <div class="tit-user-info">주소정보</div>
+
+                            <div class="inp-group">
+                                <input type="text" placeholder="주소를 검색해주세요!" class="inp-frm inp-frm-v1">
+                                <input type="submit" value="검색" class="btn-frm">
+                            </div>
+
+                            <input type="text" placeholder="(선택) 지역과 상세주소를 입력해주세요!" class="inp-frm">
+
+                            <ul class="list-addr">
+                                <li>
+                                    <input id="addr_ck1" type="radio" name="addr_ck" class="ck-custom2">
+                                    <label for="addr_ck1"><span class="custom"></span>서울특별시 강남구 신사동 123번지 신화빌딩 5층</label>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="tit-user-info">고객정보</div>
+
+                            <input type="text" placeholder="고객님 성함을 입력해주세요." class="inp-frm">
+
+                            <div class="inp-group">
+                                <input type="text" placeholder="휴대폰번호를 입력해주세요." class="inp-frm inp-frm-v1">
+                                <input type="submit" value="인증" class="btn-frm">
+                            </div>
+
+                            <ul class="list-agree">
+                                <li>
+                                    <input id="agree1_ck" type="checkbox" name="agree_ck" class="ck-custom2">
+                                    <label for="agree1_ck"><span class="custom"></span>(필수)</label>
+                                    <span class="btn-policy js-popbasic-open"><strong>개인정보 수집 및 이용</strong>동의</span>
+                                </li>
+
+                                <li>
+                                    <input id="agree2_ck" type="checkbox" name="agree_ck" class="ck-custom2">
+                                    <label for="agree2_ck"><span class="custom"></span>(필수)</label>
+                                    <span class="btn-policy js-popbasic2-open"><strong>개인정보 제3자 제공</strong>동의</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <hr class="line">
+
+                    <div class="login-area">
+                        <span class="login-info">다하다에 가입되어 있으신가요?</span>
+                        <a href="#" class="btn-sns-login">간편 로그인</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btns">
+                <input type="submit" value="이전 단계" class="btn btn-basic btn-basic-v1" onclick="location.href='reserve3.html'">
+                <input type="submit" value="다음 단계" class="btn btn-basic" onclick="location.href='reserve5.html'">
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-review-board">
+        <div class="wrap wrap-v1">
+            <div class="tit-area2 tit-area2-v1">
+                <div class="board-name">가전케어 서비스 이용후기</div>
+                <a href="#" class="btn-more">+MORE</a>
+            </div>
+            
+            <div class="review-board2">
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">박**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">임**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">정**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">wo**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div class="tit-review">고객님께서 남겨주신 후기가 텍스트로 노출됩니다. 고객님께서 남겨주신 후기가 텍스트로 노출됩니다.</div>
+
+                        <div class="review-util">
+                            <span class="review-writer">liu**님</span>
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+                            <img src="/img/ico_star2.png" alt="별점" class="ico-star">
+
+                            <span class="division-line">ㅣ</span>
+
+                            <span class="review-date">2021-03-24</span>
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-recommend">
+        <div class="wrap wrap-v1">
+            <div class="tit-area2 tit-area2-v1">
+                <div class="board-name">다하다 추천서비스</div>
+            </div>
+
+            <ul class="recommend-service">
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture5.png');">
+                        <div class="service-theme">홈케어 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture6.png');">
+                        <div class="service-theme">인테리어 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture7.png');">
+                        <div class="service-theme">가전수리 서비스</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="/img/img_transparent1.png" alt="썸네일" class="thumb" style="background-image: url('/img/img_picture8.png');">
+                        <div class="service-theme">욕실수리 서비스</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="ft">
+        <div class="ft-nav">
+            <img src="/img/img_logo2.png" alt="다하다" class="ft-logo">
+
+            <ul class="ft-util">
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">오시는길</a></li>
+                <li><a href="#">서비스안내</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
+        </div>
+
+        <div class="ft-info">
+            <div class="company-info">대표자 김용욱<span>ㅣ</span>주소 : 경기도 김포시 하성면 월하로778번길 36, 2층<br>사업자 등록 번호 : 326-88-01078<span>ㅣ</span>대표전화 1899-8053<span>ㅣ</span>fax 02-6716-1982</div>
+            <div class="copyright">COPYRIGHT DAHADA ALLRIGHT RESERVED.</div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
