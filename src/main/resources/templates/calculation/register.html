@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>수동 정산 기입입니다.</title>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: navbar"/>
+</header>
+<main>
+    <div class="container-lg">
+        <form action="/sign-up" method="post" role="form" th:object="${calculation}" style="margin-top: 2rem">
+            <div class="mb-3 row">
+                <label for="regDate" class="col-sm-2 col-form-label">날자</label>
+                <div class="col-sm-10">
+                    <input th:field="*{regDate}" type="date" class="form-control" id="regDate"
+                           placeholder="날자입력">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="street" class="col-sm-2 col-form-label">주소</label>
+                <div class="col-sm-9">
+                    <input th:field="*{street}" type="text" class="form-control" id="street">
+                </div>
+                <button id="searchAddress" type="button" class="btn btn-success">주소검색</button>
+            </div>
+            <div class="mb-3 row">
+                <label for="addressDetail" class="col-sm-2 col-form-label">상세주소</label>
+                <div class="col-sm-10">
+                    <input th:field="*{addressDetail}" type="text" class="form-control" id="addressDetail">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="zipcode" class="col-sm-2 col-form-label">우편번호</label>
+                <div class="col-sm-10">
+                    <input th:field="*{zipcode}" type="text" class="form-control" id="zipcode">
+                </div>
+            </div>
+            <input th:field="*{city}" type="hidden" class="form-control" id="city">
+            <div class="mb-3 row">
+                <label for="workList" class="col-sm-2 col-form-label">작업품목</label>
+                <div class="col-sm-10">
+                    <input th:field="*{workList}" type="text" class="form-control" id="workList"
+                           placeholder="세탁기 설치, 입주 청소">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="payment" class="col-sm-2 col-form-label">정산비용</label>
+                <div class="col-sm-10">
+                    <input th:field="*{payment}" type="text" class="form-control" id="payment">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">결제상태</label>
+                <div class="row-sm-10">
+                    <input th:field="*{state}" th:value="결제대기" type="radio" class="form-control">
+                    <label th:for="${#ids.prev('state')}">결제대기</label>
+                    <input th:field="*{state}" th:value="결제완료" type="radio" class="form-control">
+                    <label th:for="${#ids.prev('state')}">결제완료</label>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="etcs" class="col-sm-2 col-form-label">기타</label>
+                <div class="col-sm-10">
+                    <input th:field="*{etcs}" type="text" class="form-control" id="etcs">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">기입완료</button>
+        </form>
+    </div>
+</main>
+<footer>
+</footer>
+<script>
+    const inputUserAddress = document.getElementById('street')
+    const inputUserAddressDetail = document.getElementById('addressDetail')
+    const inputUserZipcode = document.getElementById('zipcode')
+    const inputCity = document.getElementById('city')
+
+    const pathFinder = new daum.Postcode({
+        oncomplete: data => {
+            console.log(data)
+            inputUserAddress.value = data.address
+            inputUserZipcode.value = data.zonecode
+            inputCity.value = data.sido
+        }
+    })
+    const btnSearchAddress = document.getElementById('searchAddress')
+    btnSearchAddress.addEventListener('click', () => {
+        pathFinder.open()
+    })
+</script>
+</body>
+</html>
