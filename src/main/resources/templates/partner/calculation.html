@@ -373,8 +373,15 @@
                     </td>
                 </tr>
 
-                <tr th:each="board : ${list}">
+                <tr th:each="calculation : ${list}">
                     <!-- Todo: 정산 내역 게시판 -->
+                    <td align="center" style="width: 5%;" class="text-center" th:text="${calculation.calculationNo}"></td>
+                    <td align="center" style="width: 15%;" class="text-center" th:text="${calculation.regDate}"></td>
+                    <td align="center" style="width: 25%;" class="text-center" th:text="${calculation.city} + ${calculation.street} + ${calculation.addressDetail}"></td>
+                    <td align="center" style="width: 25%;" class="text-center" th:text="${calculation.workList}"></td>
+                    <td align="center" style="width: 10%;" class="text-center" th:text="${calculation.payment}"></td>
+                    <td align="center" style="width: 10%;" class="text-center" th:text="${calculation.state}"></td>
+                    <td align="center" style="width: 10%;" class="text-center" th:text="${calculation.etcs}"></td>
                 </tr>
             </table>
 

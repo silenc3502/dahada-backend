@@ -17,7 +17,8 @@
 </header>
 <main>
     <div class="container-lg">
-        <form action="/sign-up" method="post" role="form" th:object="${calculation}" style="margin-top: 2rem">
+        <form action="/partners/calculationRegister" method="post" role="form" th:object="${calculation}" style="margin-top: 2rem">
+            <!--
             <div class="mb-3 row">
                 <label for="regDate" class="col-sm-2 col-form-label">날자</label>
                 <div class="col-sm-10">
@@ -25,6 +26,7 @@
                            placeholder="날자입력">
                 </div>
             </div>
+            -->
             <div class="mb-3 row">
                 <label for="street" class="col-sm-2 col-form-label">주소</label>
                 <div class="col-sm-9">
@@ -61,9 +63,9 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">결제상태</label>
                 <div class="row-sm-10">
-                    <input th:field="*{state}" th:value="결제대기" type="radio" class="form-control">
+                    <input th:field="*{state}" th:value="WAIT" type="radio" class="form-control">
                     <label th:for="${#ids.prev('state')}">결제대기</label>
-                    <input th:field="*{state}" th:value="결제완료" type="radio" class="form-control">
+                    <input th:field="*{state}" th:value="COMPLETE" type="radio" class="form-control">
                     <label th:for="${#ids.prev('state')}">결제완료</label>
                 </div>
             </div>

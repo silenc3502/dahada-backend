@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .container {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: navbar"/>
+</header>
+    <div class="container">
+        <main th:object="${partnerSignUpForm}">
+            <h2>다하다 파트너가 되신 것을 축하드립니다!</h2>
+            <p>
+                이메일: <span th:text="${partnerSignUpForm.getEmail()}"></span>
+            </p>
+            <p>
+                비밀번호: <span th:text="${partnerSignUpForm.getPassword()}"></span>
+            </p>
+        </main>
+    </div>
+<footer>
+</footer>
+</body>
+<script>
+</script>
+</html>

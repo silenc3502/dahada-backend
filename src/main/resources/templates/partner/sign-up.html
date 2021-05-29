@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: navbar"/>
+</header>
+<main>
+    <div class="container-lg">
+        <div class="container-sm" style="justify-content: center; text-align: center; margin-top: 30px">
+            <h3>어떠한 유형의 파트너분이신가요 ?</h3>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="company-partner" name="partner" value="00" onchange="setDisplay()">
+            <label class="form-check-label" for="company-partner">
+                사업자 파트너
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="individual-partner" name="partner" value="10" onchange="setDisplay()">
+            <label class="form-check-label" for="individual-partner">
+                개인 파트너
+            </label>
+        </div>
+
+
+        <div id="company" style="display: none">
+            <form action="/partners/sign-up" method="post" role="form" th:object="${partnerSignUpForm}" style="margin-top: 2rem">
+                <div class="mb-3 row">
+                    <label for="companyRegistrationNumber" class="col-sm-2 col-form-label">사업자등록번호</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{companyRegistrationNumber}" type="text" class="form-control" id="companyRegistrationNumber"
+                               placeholder="사업자등록번호를 입력하세요.">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
+        <div id="individual" style="display: none">
+            <form action="/partners/sign-up" method="post" role="form" th:object="${partnerSignUpForm}" style="margin-top: 2rem">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">성함</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{name}" type="text" class="form-control" id="name"
+                               placeholder="이름을 적어주세요.">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="residentRegistrationNumber" class="col-sm-2 col-form-label">주민등록번호</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{residentRegistrationNumber}" type="password" class="form-control" id="residentRegistrationNumber"
+                               placeholder="주민등록번호를 적어주세요.">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer>
+</footer>
+</body>
+<script>
+    const company = document.getElementById('company')
+    const individual = document.getElementById('individual')
+    const companyPartner = document.getElementById('company-partner')
+    const individualPartner = document.getElementById('individual-partner')
+
+    function setDisplay () {
+        if (companyPartner.checked === true) {
+            company.style.display = "block"
+            individual.style.display = "none"
+        }
+
+        if (individualPartner.checked === true) {
+            company.style.display = "none"
+            individual.style.display = "block"
+        }
+    }
+</script>
+</html>

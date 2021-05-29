@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        .imagePreview {
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+            background-color:#fff;
+            background-size: cover;
+            background-repeat:no-repeat;
+            display: inline-block;
+            box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+        }
+        .btn-primary
+        {
+            display:block;
+            border-radius:0px;
+            box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
+            margin-top:-5px;
+        }
+        .imgUp
+        {
+            margin-bottom:15px;
+        }
+        .del
+        {
+            position:absolute;
+            top:0px;
+            right:15px;
+            width:30px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            background-color:rgba(255,255,255,0.6);
+            cursor:pointer;
+        }
+        .imgAdd
+        {
+            width:30px;
+            height:30px;
+            border-radius:50%;
+            background-color:#4bd7ef;
+            color:#fff;
+            box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+            text-align:center;
+            line-height:30px;
+            margin-top:0px;
+            cursor:pointer;
+            font-size:15px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: navbar"/>
+</header>
+<main>
+    <div class="container-lg">
+        <div class="container-sm" style="justify-content: center; text-align: center; margin-top: 30px">
+            <h3>기본 정보를 입력해주세요.</h3>
+        </div>
+
+        <!-- th:object="${signUpForm}" -->
+        <div th:if="${partnerSignUpForm.getCompanyRegistrationNumber()}">
+            <form action="/partners/finish-sign-up" method="post" role="form" th:object="${partnerSignUpForm}" style="margin-top: 2rem">
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">사진</label>
+                    <div class="col-sm-4 imgUp">
+                        <div class="imagePreview"></div>
+                        <label class="btn btn-primary">
+                            <!-- TODO: Link with File System -->
+                            Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                    </div><!-- col-2 -->
+                    <i class="fa fa-plus imgAdd"></i>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">이메일</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{email}" type="email" class="form-control" id="email"
+                               placeholder="이메일을 적어주세요.">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">아이디</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{id}" type="text" class="form-control" id="id"
+                               placeholder="아이디를 입력해주세요.">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="pw" class="col-sm-2 col-form-label">비밀번호</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{password}" type="password" class="form-control" id="pw">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="pwConfirm" class="col-sm-2 col-form-label">비밀번호 확인</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{passwordConfirm}" type="password" class="form-control" id="pwConfirm">
+                    </div>
+                </div>
+
+                <div class="container-sm" style="justify-content: center; text-align: center; margin-top: 30px">
+                    <h3>사업자 정보를 입력해주세요.</h3>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="companyRegistrationNumber" class="col-sm-2 col-form-label">사업자등록번호</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{companyRegistrationNumber}" type="text" class="form-control" id="companyRegistrationNumber"
+                               placeholder="사업자등록번호를 입력하세요.">
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">상호</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{businessName}" type="text" class="form-control" id="businessName"
+                                   placeholder="상호를 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">업체명</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{companyName}" type="text" class="form-control" id="companyName"
+                                   placeholder="업체명을 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">대표자 성함</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{representativeName}" type="text" class="form-control" id="representativeName"
+                                   placeholder="대표자 성함을 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">대표자 휴대폰</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{phoneNumber}" type="text" class="form-control" id="cellPhoneNumber"
+                                   placeholder="대표자 휴대폰 번호를 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">업태</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{businessCondition}" type="text" class="form-control" id="businessCondition"
+                                   placeholder="업태를 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="companyName" class="col-sm-2 col-form-label">종목</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{businessCategory}" type="text" class="form-control" id="businessCategory"
+                                   placeholder="종목을 입력하세요.">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="street" class="col-sm-2 col-form-label">주소</label>
+                        <div class="col-sm-9">
+                            <input th:field="*{street}" type="text" class="form-control" id="street">
+                        </div>
+                        <button id="searchAddress" type="button" class="btn btn-success">주소검색</button>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="addressDetail" class="col-sm-2 col-form-label">상세주소</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{addressDetail}" type="text" class="form-control" id="addressDetail">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="zipcode" class="col-sm-2 col-form-label">우편번호</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{zipcode}" type="text" class="form-control" id="zipcode">
+                        </div>
+                    </div>
+                    <input th:field="*{city}" type="hidden" class="form-control" id="city">
+
+                    <div class="mb-3 row">
+                        <label for="businessRegistrationCertificateCopy" class="col-sm-2 col-form-label">사업자등록증 사본</label>
+                        <div class="col-sm-10 form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="businessRegistrationCertificateCopy"/>
+                                <label class="custom-file-label" for="businessRegistrationCertificateCopy">사업자등록증 사본을 입력해주세요.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="bankBookCopy" class="col-sm-2 col-form-label">통장 사본</label>
+                        <div class="col-sm-10 form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="bankBookCopy"/>
+                                <label class="custom-file-label" for="bankBookCopy">통장 사본을 입력해주세요.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="zipcode" class="col-sm-2 col-form-label">은행명</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{bankName}" type="text" class="form-control" id="bankName">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="zipcode" class="col-sm-2 col-form-label">입금자명</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{depositorName}" type="text" class="form-control" id="depositorName">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="zipcode" class="col-sm-2 col-form-label">계좌 번호</label>
+                        <div class="col-sm-10">
+                            <input th:field="*{accountNumber}" type="text" class="form-control" id="accountNumber">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
+
+        <div id="company" style="display: none">
+            <form action="/partners/sign-up" method="post" role="form" th:object="${partnerSignUpForm}" style="margin-top: 2rem">
+
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
+        <div id="individual" style="display: none">
+            <form action="/partners/sign-up" method="post" role="form" th:object="${partnerSignUpForm}" style="margin-top: 2rem">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">성함</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{name}" type="text" class="form-control" id="name"
+                               placeholder="이름을 적어주세요.">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="residentRegistrationNumber" class="col-sm-2 col-form-label">주민등록번호</label>
+                    <div class="col-sm-10">
+                        <input th:field="*{residentRegistrationNumber}" type="password" class="form-control" id="residentRegistrationNumber"
+                               placeholder="주민등록번호를 적어주세요.">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">가입하기</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer>
+</footer>
+</body>
+<script>
+    $(".imgAdd").click(function(){
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+    });
+    $(document).on("click", "i.del" , function() {
+        $(this).parent().remove();
+    });
+    $(function() {
+        $(document).on("change",".uploadFile", function()
+        {
+            var uploadFile = $(this);
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+            if (/^image/.test( files[0].type)){ // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function(){ // set image data as background of div
+                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                    uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+                }
+            }
+
+        });
+    });
+
+    const inputUserAddress = document.getElementById('street')
+    const inputUserAddressDetail = document.getElementById('addressDetail')
+    const inputUserZipcode = document.getElementById('zipcode')
+    const inputCity = document.getElementById('city')
+
+    const pathFinder = new daum.Postcode({
+        oncomplete: data => {
+            console.log(data)
+            inputUserAddress.value = data.address
+            inputUserZipcode.value = data.zonecode
+            inputCity.value = data.sido
+        }
+    })
+    const btnSearchAddress = document.getElementById('searchAddress')
+    btnSearchAddress.addEventListener('click', () => {
+        pathFinder.open()
+    })
+</script>
+</html>
