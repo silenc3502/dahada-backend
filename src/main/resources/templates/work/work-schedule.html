@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <style>
+        .clearfix::after,
+        .calendar ol::after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        /* ================
+        Calendar Styling */
+        .calendar {
+            border-radius: 10px;
+        }
+
+        .month {
+            font-size: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .month {
+                font-size: 3.5rem;
+            }
+        }
+
+        .calendar ol li {
+            float: left;
+            width: 14.28571%;
+        }
+
+        .calendar .day-names {
+            border-bottom: 1px solid #eee;
+        }
+
+        .calendar .day-names li {
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar .days li {
+            border-bottom: 1px solid #eee;
+            min-height: 8rem;
+        }
+
+        .calendar .days li .date {
+            margin: 0.5rem 0;
+        }
+
+        .calendar .days li .event {
+            font-size: 0.75rem;
+            padding: 0.4rem;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-radius: 4rem;
+            margin-bottom: 1px;
+        }
+
+        .calendar .days li .event.span-2 {
+            width: 200%;
+        }
+
+        .calendar .days li .event.begin {
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .calendar .days li .event.end {
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        .calendar .days li .event.clear {
+            background: none;
+        }
+
+        .calendar .days li:nth-child(n+29) {
+            border-bottom: none;
+        }
+
+        .calendar .days li.outside .date {
+            color: #ddd;
+        }
+
+        /*
+        *
+        * ==========================================
+        * FOR DEMO PURPOSES
+        * ==========================================
+        *
+        */
+        body {
+            min-height: 100vh;
+            background-color: #3ca55c;
+            background-image: linear-gradient(147deg, #3ca55c 0%, #b5ac49 100%);
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+
+    <!-- For Demo Purpose -->
+    <header class="text-center text-white mb-5">
+        <h1 class="display-4">다하다 파트너스 작업 일정표</h1>
+        <p class="font-italic mb-0">우리 모두 즐기며 일합시다 ^^</p>
+    </header>
+
+    <!-- Calendar -->
+    <div class="calendar shadow bg-white p-5">
+        <div class="d-flex align-items-center"><i class="fa fa-calendar fa-3x mr-3"></i>
+            <h2 class="month font-weight-bold mb-0 text-uppercase">2021년도 5월</h2>
+        </div>
+        <p class="font-italic text-muted mb-5">이벤트 없음</p>
+        <ol class="day-names list-unstyled">
+            <li class="font-weight-bold text-uppercase">일</li>
+            <li class="font-weight-bold text-uppercase">월</li>
+            <li class="font-weight-bold text-uppercase">화</li>
+            <li class="font-weight-bold text-uppercase">수</li>
+            <li class="font-weight-bold text-uppercase">목</li>
+            <li class="font-weight-bold text-uppercase">금</li>
+            <li class="font-weight-bold text-uppercase">토</li>
+        </ol>
+
+        <ol class="days list-unstyled">
+            <li class="outside">
+                <div class="date">28</div>
+                <div class="event bg-success">동파 배관 유지 보수</div>
+            </li>
+            <li>
+                <div class="date">1</div>
+            </li>
+            <li>
+                <div class="date">2</div>
+            </li>
+            <li>
+                <div class="date">3</div>
+            </li>
+            <li>
+                <div class="date">4</div>
+            </li>
+            <li>
+                <div class="date">5</div>
+            </li>
+            <li>
+                <div class="date">6</div>
+            </li>
+            <li>
+                <div class="date">7</div>
+            </li>
+            <li>
+                <div class="date">8</div>
+            </li>
+            <li>
+                <div class="date">9</div>
+            </li>
+            <li>
+                <div class="date">10</div>
+            </li>
+            <li>
+                <div class="date">11</div>
+            </li>
+            <li>
+                <div class="date">12</div>
+                <div class="event all-day begin span-2 bg-warning">파트너스 캠핑 모임</div>
+            </li>
+            <li>
+                <div class="date">13</div>
+            </li>
+            <li>
+                <div class="date">14</div>
+                <div class="event all-day end bg-success">파트너스 캠핑 모임</div>
+            </li>
+            <li>
+                <div class="date">15</div>
+            </li>
+            <li>
+                <div class="date">16</div>
+            </li>
+            <li>
+                <div class="date">17</div>
+            </li>
+            <li>
+                <div class="date">18</div>
+            </li>
+            <li>
+                <div class="date">19</div>
+            </li>
+            <li>
+                <div class="date">20</div>
+            </li>
+            <li>
+                <div class="date">21</div>
+                <div class="event bg-primary">변기 교체</div>
+                <div class="event bg-success">에어컨 세척</div>
+            </li>
+            <li>
+                <div class="date">22</div>
+                <div class="event bg-info">다하다 파트너스 정기 모임</div>
+            </li>
+            <li>
+                <div class="date">23</div>
+            </li>
+            <li>
+                <div class="date">24</div>
+            </li>
+            <li>
+                <div class="date">25</div>
+            </li>
+            <li>
+                <div class="date">26</div>
+            </li>
+            <li>
+                <div class="date">27</div>
+            </li>
+            <li>
+                <div class="date">28</div>
+            </li>
+            <li>
+                <div class="date">29</div>
+            </li>
+            <li>
+                <div class="date">30</div>
+            </li>
+            <li>
+                <div class="date">31</div>
+            </li>
+            <li class="outside">
+                <div class="date">1</div>
+            </li>
+            <li class="outside">
+                <div class="date">2</div>
+            </li>
+            <li class="outside">
+                <div class="date">3</div>
+            </li>
+        </ol>
+    </div>
+</div>
+</body>
+</html>

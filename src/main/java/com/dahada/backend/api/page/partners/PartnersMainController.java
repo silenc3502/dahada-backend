@@ -96,4 +96,18 @@ public class PartnersMainController {
 
         return "/partner/calculation";
     }
+
+    @GetMapping("/work-schedule")
+    public String partnerWorkSchedule () {
+        log.info("partnerWorkSchedule()");
+
+        return "work/work-schedule";
+    }
+
+    @GetMapping("/partner-matching")
+    public String partnerMatching () {
+        log.info("partnerMatching()");
+
+        return "work/partner-matching";
+    }
 }
