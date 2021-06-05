@@ -1,9 +1,11 @@
 package com.dahada.backend.api.page.partners;
 
+import com.dahada.backend.api.page.partners.form.PartnerSignInForm;
 import com.dahada.backend.api.page.partners.form.PartnerSignUpForm;
 import com.dahada.backend.application.calculation.entity.Calculation;
 import com.dahada.backend.application.calculation.service.PartnerCalculationService;
 import com.dahada.backend.application.configuration.resolvers.annotations.Authenticated;
+import com.dahada.backend.application.partners.service.PartnerSignInService;
 import com.dahada.backend.application.partners.service.PartnerSignUpService;
 import com.dahada.backend.application.user.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,9 @@ public class PartnersMainController {
 
     @Autowired
     private PartnerSignUpService partnerSignUpService;
+
+    @Autowired
+    private PartnerSignInService partnerSignInService;
 
     @GetMapping
     public String index() {
@@ -68,6 +73,22 @@ public class PartnersMainController {
         modelAndView.setViewName("/partner/finish-sign-up");
 
         return modelAndView;
+    }
+
+    @GetMapping("/sign-in")
+    public String signIn(Model model) {
+        model.addAttribute("partnerSignInForm", new PartnerSignInForm());
+
+        return "/partner/sign-in";
+    }
+
+    @PostMapping("/sign-in")
+    public String finishSignIn(Model model, PartnerSignInForm partnerSignInForm) {
+        log.info("partnerSignInForm: " + partnerSignInForm);
+
+        partnerSignInService.partnerSignIn(partnerSignInForm.toSignInRequest());
+
+        return "redirect:/partners";
     }
 
     @GetMapping("/calculationRegister")

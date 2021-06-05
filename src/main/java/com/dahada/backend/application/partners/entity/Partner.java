@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Optional;
 
 @Slf4j
 @Entity
@@ -76,6 +77,13 @@ public class Partner {
     private Date regDate;
     @UpdateTimestamp
     private Date updDate;
+
+    public boolean isRightPassword(String plainToCheck) {
+        if (plainToCheck.length() > 8) {
+            return true;
+        }
+        return false;
+    }
 
     public Partner(String email, String city, String street, String addressDetail, String zipcode,
                    String companyRegistrationNumber, String businessName, String companyName,
